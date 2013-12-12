@@ -8,7 +8,7 @@ Nice wrapper of [PDFBox](http://pdfbox.apache.org/) in Clojure.
 
 ```clojure
 (require '[pdfboxing.merge :as pdf])
-(pdf/merge-pdfs "output.pdf" "a.pdf" "b.pdf" "c.pdf")
+(pdf/merge-pdfs :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"] :output "foo.pdf")
 ```
 
 ## License

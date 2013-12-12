@@ -1,25 +1,23 @@
 (ns pdfboxing.merge
   (:import [org.apache.pdfbox.pdmodel PDDocument PDPage]
            [org.apache.pdfbox.util PDFMergerUtility]
-           [java.io File FileInputStream]
-           [clojure.lang ArityException]))
+           [java.io File FileInputStream]))
 
-(defn file-arg-check [& files]
-  (if (empty? files)
-    (throw (ArityException. 0 "file-count, at least two arguments required"))
-    (if (string? files)
-      (throw (ArityException. 1 "file-count, at least two arguments required"))
-      (when (sequential? files)
-        (if (< (count (into [] (flatten files))) 2)
-          (throw (ArityException. 1 "file-count, at least two arguments required")))
-            true))))
+(defn arg-check [output input]
+  (if (empty? output)
+    (throw (IllegalArgumentException. "output - required argument"))
+    (if (empty? input)
+      (throw (IllegalArgumentException. "input - required argument"))
+      (if (sequential? input)
+        true
+        (throw (IllegalArgumentException. "input - needs to be sequential"))))))
 
 (defn merge-pdfs
   "merge multiple PDFs into output file"
-  [output & files]
-  {:pre [(file-arg-check files)]}
+  [& {:keys [output input]}]
+  {:pre [(arg-check output input)]}
   (let [merger (PDFMergerUtility.)]
-      (doseq [f files]
+      (doseq [f input]
         (.addSource merger (FileInputStream. (File. f))))
       (.setDestinationFileName merger output)
     (.mergeDocuments merger)))
