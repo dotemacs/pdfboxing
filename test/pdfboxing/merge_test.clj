@@ -37,8 +37,8 @@
 (deftest pdf-file-merge
   (let [file "foo.pdf"
         merging-outcome (merge-pdfs file
-                                    "pdfs/lpa.pdf"
-                                    "pdfs/HelloWorld.pdf")
+                                    "pdfs/clojure-1.pdf"
+                                    "pdfs/clojure-2.pdf")
         merged-pdf-file (.exists (io/as-file file))]
     (is (true? merged-pdf-file))))
 
