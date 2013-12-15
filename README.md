@@ -16,20 +16,21 @@ Nice wrapper of [PDFBox](http://pdfbox.apache.org/) in Clojure.
 
 ### List form fields of a PDF
 
-To get just the names of fields:
-
-```clojure
-(require '[pdfboxing.form :as form])
-(form/get-fields "pdfs/interactiveform.pdf")
-=> ["HIGH SCHOOL DIPLOMA" "TRADE CERTIFICATE" "COLLEGE NO DEGREE" ... ]
-```
-
 To list fields and values:
 
 ```clojure
 (require '[pdfboxing.form :as form])
-(form/get-fields-and-values "pdfs/interactiveform.pdf"))
+(form/get-fields "pdfs/interactiveform.pdf"))
 {"Emergency_Phone" "", "ZIP" "", "COLLEGE NO DEGREE" "", ...}
+```
+
+To fill in form's field supply a hash map with field names and desired
+values. It will create a copy of **fillable.pdf** as **new.pdf** with
+the fields filled in:
+
+```clojure
+(require '[pdfboxing.form :as form])
+(form/set-fields "pdfs/fillable.pdf" "pdfs/new.pdf" {"Text10" "My first name"})
 ```
 
 ## License
