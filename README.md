@@ -1,6 +1,6 @@
 # `pdfboxing`
 
-Nice wrapper of [PDFBox](http://pdfbox.apache.org/) in Clojure.
+Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org/).
 
 [![Continuous Integration status](https://secure.travis-ci.org/dotemacs/pdfboxing.png)](http://travis-ci.org/dotemacs/pdfboxing)
 
@@ -39,4 +39,3 @@ Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dotemacs/pdfboxing/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

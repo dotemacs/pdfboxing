@@ -1,7 +1,7 @@
 (defproject pdfboxing "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :description "Clojure PDF manipulation library & wrapper for PDFBox"
+  :url "https://github.com/dotemacs/pdfboxing"
+  :license {:name "BSD"
+            :url "http://www.opensource.org/licenses/bsd-license.php"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.apache.pdfbox/pdfbox "1.8.3"]])
