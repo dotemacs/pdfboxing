@@ -35,3 +35,7 @@ To list fields and values:
 ## License
 
 Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dotemacs/pdfboxing/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
