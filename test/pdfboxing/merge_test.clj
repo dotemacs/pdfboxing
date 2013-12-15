@@ -1,9 +1,7 @@
 (ns pdfboxing.merge-test
   (:require [clojure.test :refer :all]
             [clojure.java.io :as io]
-            [pdfboxing.merge :refer :all])
-  (:import [java.io FileNotFoundException]
-           [clojure.lang ArityException]))
+            [pdfboxing.merge :refer :all]))
 
 (deftest input-output-argument-check
   (is (thrown? IllegalArgumentException (arg-check)))
@@ -17,7 +15,7 @@
                               :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"]))))
 
 (deftest pdf-file-merge
-  (let [file "foo.pdf"
+  (let [file "test/pdfs/foo.pdf"
         merging-outcome (merge-pdfs :output file
                                     :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"])
         merged-pdf-file (.exists (io/as-file file))]
