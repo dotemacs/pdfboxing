@@ -13,13 +13,13 @@
 
 
 (deftest pdf-merge-exit-status
-        (is (nil? (merge-pdfs :output "foo.pdf"
-                              :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"]))))
+        (is (nil? (merge-pdfs :output "test/pdfs/foo.pdf"
+                              :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"]))))
 
 (deftest pdf-file-merge
   (let [file "foo.pdf"
         merging-outcome (merge-pdfs :output file
-                                    :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"])
+                                    :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"])
         merged-pdf-file (.exists (io/as-file file))]
     (is (true? merged-pdf-file))))
 
@@ -29,4 +29,4 @@
     (io/delete-file file)))
 
 (deftest cleaner
-  (clean-up "foo.pdf"))
+  (clean-up "test/pdfs/foo.pdf"))
