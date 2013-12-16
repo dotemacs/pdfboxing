@@ -29,3 +29,17 @@
           (str "Error: can't add non-simple fonts, this is a constraint of PDFBox."))
         (catch NullPointerException e
           (str "Error: non existent field provided"))))))
+
+(defn rename-fields
+  "take an input PDF, a new file to be created and a map with keys as
+  the current form field names and values as the new names, and rename
+  them"
+  [input output fields-map]
+  (with-open [doc (PDDocument/load input)]
+    (let [catalog (.getDocumentCatalog doc)
+          form (.getAcroForm catalog)]
+      (doseq [field fields-map]
+        (.setPartialName
+         (.getField form (str (first field)))
+         (str (last field))))
+      (.save doc output))))

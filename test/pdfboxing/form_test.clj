@@ -3,6 +3,12 @@
             [clojure.java.io :as io]
             [pdfboxing.form :refer :all]))
 
+(defn clean-up
+  "clean up the file after testing"
+  [file]
+  (if (.exists (io/as-file file))
+    (io/delete-file file)))
+
 (deftest document-fields-and-value
   (def document-fields-with-values {"HIGH SCHOOL DIPLOMA" "",
                                     "TRADE CERTIFICATE" "",
@@ -35,13 +41,6 @@
   (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
 
 (deftest populating-fields
-  (defn clean-up
-    "clean up the file after testing"
-    [file]
-    (if (.exists (io/as-file file))
-      (io/delete-file file)))
-
-
   (testing "Error handling for non simple fonts"
     (is (= "Error: can't add non-simple fonts, this is a constraint of PDFBox."
            (set-fields "test/pdfs/interactiveform.pdf"
@@ -57,3 +56,13 @@
   (testing "form filling valid fields"
     (is (nil? (set-fields "test/pdfs/fillable.pdf" "test/pdfs/test.pdf" {"Text10" "My first name"}))))
   (clean-up "test/pdfs/test.pdf"))
+
+(deftest field-rename
+  (testing "renaming of the form field"
+    (is (true?
+         (contains?
+          (do
+            (rename-fields "test/pdfs/interactiveform.pdf" "test/pdfs/addr1.pdf" {"Address_1" "NewAddr"})
+            (get-fields "test/pdfs/addr1.pdf"))
+          "NewAddr"))))
+  (clean-up "test/pdfs/addr1.pdf"))

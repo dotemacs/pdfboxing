@@ -34,6 +34,16 @@ the fields filled in:
 (form/set-fields "pdfs/fillable.pdf" "pdfs/new.pdf" {"Text10" "My first name"})
 ```
 
+### Rename form fields of a PDF
+
+To rename PDF form fields, supply a hash map where the keys are the
+current names and the values new names:
+
+```clojure
+(require '[pdfboxing.form :as form])
+(rename-fields "test/pdfs/interactiveform.pdf" "test/pdfs/addr1.pdf" {"Address_1" "NewAddr"})
+```
+
 ## License
 
 Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php).
