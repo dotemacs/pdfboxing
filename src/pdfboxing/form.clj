@@ -28,5 +28,4 @@
         (catch IOException e
           (str "Error: can't add non-simple fonts, this is a constraint of PDFBox."))
         (catch NullPointerException e
-          (str "Error: non existent field provided")
-          )))))
+          (str "Error: non existent field provided"))))))
