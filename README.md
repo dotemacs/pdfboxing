@@ -4,6 +4,7 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 
 [![Continuous Integration status](https://secure.travis-ci.org/dotemacs/pdfboxing.png)](http://travis-ci.org/dotemacs/pdfboxing)
 
+!["Leiningen version"](https://clojars.org/pdfboxing/latest-version.svg)
 
 ## Usage
 
