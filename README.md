@@ -41,7 +41,13 @@ current names and the values new names:
 
 ```clojure
 (require '[pdfboxing.form :as form])
-(rename-fields "test/pdfs/interactiveform.pdf" "test/pdfs/addr1.pdf" {"Address_1" "NewAddr"})
+(form/rename-fields "test/pdfs/interactiveform.pdf" "test/pdfs/addr1.pdf" {"Address_1" "NewAddr"})
+```
+### Get page count of a PDF document
+
+```clojure
+(require '[pdfboxing.info :as info])
+(info/page-numbers "test/pdfs/interactiveform.pdf")
 ```
 
 ## License
