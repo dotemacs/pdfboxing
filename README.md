@@ -49,6 +49,14 @@ current names and the values new names:
 (require '[pdfboxing.info :as info])
 (info/page-numbers "test/pdfs/interactiveform.pdf")
 ```
+### Get info about a PDF document
+
+Such as title, author, subject, keywords, creator & producer
+
+```clojure
+(require '[pdfboxing.info :as info])
+(info/about-doc "test/pdfs/interactiveform.pdf")
+```
 
 ## License
 
