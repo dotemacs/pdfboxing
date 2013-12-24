@@ -24,6 +24,7 @@ To list fields and values:
 (form/get-fields "pdfs/interactiveform.pdf"))
 {"Emergency_Phone" "", "ZIP" "", "COLLEGE NO DEGREE" "", ...}
 ```
+### Fill in PDF forms
 
 To fill in form's field supply a hash map with field names and desired
 values. It will create a copy of **fillable.pdf** as **new.pdf** with
