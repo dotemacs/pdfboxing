@@ -13,11 +13,9 @@
 
 (defn- getter
   "private helper function to be used by about-doc"
-  [obj method-str & args]
+  [obj method-str]
   (let [get-method (str "get" (string/capitalize method-str))]
-    (Reflector/invokeInstanceMethod obj get-method (to-array args))))
-
-(def info-fields ["title" "author" "subject" "keywords" "creator" "producer"])
+    (Reflector/invokeInstanceMethod obj get-method (to-array []))))
 
 (defn about-doc
   "get the basic information about the given document
@@ -25,6 +23,7 @@
    info-fields"
   [pdfdoc]
   (with-open [doc (PDDocument/load pdfdoc)]
-    (let [info (.getDocumentInformation doc)]
+    (let [info (.getDocumentInformation doc)
+          info-fields ["title" "author" "subject" "keywords" "creator" "producer"]]
       (into {}
             (map #(hash-map (str %1) (getter info %1)) info-fields)))))
