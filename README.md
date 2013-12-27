@@ -8,6 +8,13 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 
 ## Usage
 
+### Extract text
+
+```clojure
+(require '[pdfboxing.text :as text])
+(text/extract "test/pdfs/hello.pdf")
+```
+
 ### Merge multiple PDFs
 
 ```clojure
