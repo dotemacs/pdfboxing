@@ -1,6 +1,5 @@
 (ns pdfboxing.merge
-  (:import [org.apache.pdfbox.pdmodel PDDocument PDPage]
-           [org.apache.pdfbox.util PDFMergerUtility]
+  (:import [org.apache.pdfbox.util PDFMergerUtility]
            [java.io File FileInputStream]))
 
 (defn arg-check [output input]
