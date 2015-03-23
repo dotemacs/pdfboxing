@@ -13,6 +13,16 @@
           form (.getAcroForm catalog)
           fields (.getFields form)]
       (into {} (map #(hash-map (.getPartialName %) (str (.getValue %))) fields)))))
+    
+(defn get-checkbox-field-options
+  "get the On and Off values for all Fields of type \"Btn\""
+  [pdfdoc]
+  (with-open [doc (PDDocument/load pdfdoc)]
+    (let [catalog (.getDocumentCatalog doc)
+          form (.getAcroForm catalog)
+          fields (.getFields form)
+          checkboxes (filter #(= "Btn" (.getFieldType %)) fields)]
+      (into {} (map #(hash-map (.getPartialName %) {:on (str (.getOnValue %)) :off (.getOffValue %)}) checkboxes)))))
 
 (defn set-fields
   "fill in the fields with the values provided"
