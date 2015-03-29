@@ -3,6 +3,6 @@
   :url "https://github.com/dotemacs/pdfboxing"
   :license {:name "BSD"
             :url "http://www.opensource.org/licenses/bsd-license.php"}
-  :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.apache.pdfbox/pdfbox "1.8.3"]
-                 [org.apache.pdfbox/preflight "1.8.3"]])
+  :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.apache.pdfbox/pdfbox "1.8.9"]
+                 [org.apache.pdfbox/preflight "1.8.9"]])
