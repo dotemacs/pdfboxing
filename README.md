@@ -66,6 +66,20 @@ Such as title, author, subject, keywords, creator & producer
 (info/about-doc "test/pdfs/interactiveform.pdf")
 ```
 
+### Draw lines on a PDF document
+
+Supply a PDF document, a name for the output PDF document, the page
+number where you want the lines to be drawn and the coordinates where
+the line should be drawn
+
+```clojure
+(require '[pdfboxing.draw :as draw])
+(draw/draw-line :input-pdf "test/pdfs/clojure-1.pdf"
+                :page-number 0
+                :output-pdf "ninja.pdf"
+                :coordinates {:x 0 :y 160 :x1 650 :y1 160})
+```
+
 ## License
 
 Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php).
