@@ -3,17 +3,17 @@
            [org.apache.pdfbox.pdmodel.edit PDPageContentStream]))
 
 (defn get-catalog
-  "get a catalog from a PDF document"
+  "Get a catalog from a PDF document"
   [document]
   (.getDocumentCatalog document))
 
 (defn get-page
-  "get a particular page from a catalog"
+  "Get a particular page from a catalog"
   [catalog page-number]
   (.get (.getAllPages catalog) page-number))
 
 (defn get-content-stream
-  "take the read in PDF document and a page number and return content
+  "Take the read in PDF document and a page number and return content
   stream which will be manipulated"
   [document page-number]
   (let [catalog (get-catalog document)
@@ -45,7 +45,7 @@
              (:y1 coordinates)))
 
 (defn draw-line
-  "draw a line on input-pdf's page, producing a output-pdf document"
+  "Draw a line on input-pdf's page, producing a output-pdf document"
   [& {:keys [input-pdf page-number output-pdf coordinates]}]
   (with-open [document (PDDocument/load input-pdf)]
     (with-open [content-stream (get-content-stream document page-number)]
