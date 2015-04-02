@@ -22,9 +22,9 @@
     content-stream))
 
 (defn use-rgb-colour
-  "take content-stream and use RGB colour to draw on it
-   e.g. 0 0 0 for black"
-  [content-stream r g b]
+  "Take content-stream and use RGB colour to draw on it.
+   By default black colour will be used."
+  [content-stream & {:keys [r g b] :or {r 0 g 0 b 0}}]
   (.setStrokingColor content-stream r g b))
 
 (defn set-line-width
@@ -48,7 +48,7 @@
   [& {:keys [input-pdf page-number output-pdf coordinates]}]
   (with-open [document (PDDocument/load input-pdf)]
     (with-open [content-stream (get-content-stream document page-number)]
-      (use-rgb-colour content-stream 0 0 0)
+      (use-rgb-colour content-stream)
       (set-line-width content-stream 3)
       (draw-line-at-coordinates content-stream coordinates))
       (.save document output-pdf)))
