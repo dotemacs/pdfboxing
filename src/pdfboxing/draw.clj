@@ -28,9 +28,10 @@
   (.setStrokingColor content-stream r g b))
 
 (defn set-line-width
-  "the size of the line to be drawn
-   e.g. 3"
-  [content-stream line-width]
+  "The width of the line to be drawn.
+   By default it's 3."
+  [content-stream & {:keys [line-width]
+                     :or {line-width 3}}]
   (.setLineWidth content-stream line-width))
 
 (defn draw-line-at-coordinates
@@ -49,6 +50,6 @@
   (with-open [document (PDDocument/load input-pdf)]
     (with-open [content-stream (get-content-stream document page-number)]
       (use-rgb-colour content-stream)
-      (set-line-width content-stream 3)
+      (set-line-width content-stream)
       (draw-line-at-coordinates content-stream coordinates))
       (.save document output-pdf)))
