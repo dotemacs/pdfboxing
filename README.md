@@ -83,10 +83,3 @@ on which the line should be drawn
                               :x1 650
                               :y1 160})
 ```
-
-## License
-
-Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php).
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dotemacs/pdfboxing/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
