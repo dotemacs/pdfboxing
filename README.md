@@ -55,7 +55,7 @@ current names and the values new names:
 
 ```clojure
 (require '[pdfboxing.info :as info])
-(info/page-numbers "test/pdfs/interactiveform.pdf")
+(info/page-number "test/pdfs/interactiveform.pdf")
 ```
 ### Get info about a PDF document
 
