@@ -2,9 +2,10 @@
 
 Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org/).
 
-[![Continuous Integration status](https://secure.travis-ci.org/dotemacs/pdfboxing.png)](http://travis-ci.org/dotemacs/pdfboxing)
+* [!["Clojar version"](https://img.shields.io/badge/clojars%20version-0.1.3-brightgreen.svg?style=flat-square)](https://clojars.org/pdfboxing)
+* [!["Continuous Integration status"](https://img.shields.io/travis/dotemacs/pdfboxing.svg?style=flat-square)](http://travis-ci.org/dotemacs/pdfboxing)
+* [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/bsd-license)
 
-[!["Leiningen version"](https://clojars.org/pdfboxing/latest-version.svg)](https://clojars.org/pdfboxing)
 
 ## Usage
 
