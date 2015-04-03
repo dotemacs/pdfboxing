@@ -48,10 +48,13 @@
              (:y1 coordinates)))
 
 (defn draw-line
-  "Draw a line on input-pdf's page, producing a output-pdf document"
-  [& {:keys [input-pdf page-number output-pdf coordinates]}]
+  "Draw a line on input-pdf's page, producing a output-pdf document.
+   It takes three arguments input-pdf, output-pdf and
+   coordinates. Where coordinates have: page-number, x, y, x1, y1
+   points where the line should be drawn."
+  [& {:keys [input-pdf output-pdf coordinates]}]
   (with-open [document (PDDocument/load input-pdf)]
-    (with-open [content-stream (get-content-stream document page-number)]
+    (with-open [content-stream (get-content-stream document (:page-number coordinates))]
       (use-rgb-colour content-stream)
       (set-line-width content-stream)
       (draw-line-at-coordinates content-stream coordinates))
