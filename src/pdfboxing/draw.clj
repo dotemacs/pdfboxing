@@ -24,7 +24,10 @@
 (defn use-rgb-colour
   "Take content-stream and use RGB colour to draw on it.
    By default black colour will be used."
-  [content-stream & {:keys [r g b] :or {r 0 g 0 b 0}}]
+  [content-stream & {:keys [r g b]
+                     :or {r 0
+                          g 0
+                          b 0}}]
   (.setStrokingColor content-stream r g b))
 
 (defn set-line-width
