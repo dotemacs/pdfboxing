@@ -68,16 +68,19 @@ Such as title, author, subject, keywords, creator & producer
 
 ### Draw lines on a PDF document
 
-Supply a PDF document, a name for the output PDF document, the page
-number where you want the lines to be drawn and the coordinates where
-the line should be drawn
+Supply a PDF document, a name for the output PDF document, the
+coordinates where the line should be drawn along with the page number
+on which the line should be drawn
 
 ```clojure
 (require '[pdfboxing.draw :as draw])
 (draw/draw-line :input-pdf "test/pdfs/clojure-1.pdf"
-                :page-number 0
                 :output-pdf "ninja.pdf"
-                :coordinates {:x 0 :y 160 :x1 650 :y1 160})
+                :coordinates {:page-number 0
+                              :x 0
+                              :y 160
+                              :x1 650
+                              :y1 160})
 ```
 
 ## License
