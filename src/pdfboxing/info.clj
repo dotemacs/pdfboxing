@@ -1,13 +1,13 @@
 (ns pdfboxing.info
-  (:require [clojure.string :as string])
-  (:import
-   [clojure.lang Reflector]
-   [org.apache.pdfbox.pdmodel PDDocument PDDocumentCatalog PDDocumentInformation]))
+  (:require [clojure.string :as string]
+            [pdfboxing.common :as common])
+  (:import [clojure.lang Reflector]
+           [org.apache.pdfbox.pdmodel PDDocumentCatalog PDDocumentInformation]))
 
 (defn page-number
   "return number of pages of a PDF document"
   [pdfdoc]
-  (with-open [doc (PDDocument/load pdfdoc)]
+  (with-open [doc (common/load-pdf pdfdoc)]
     (.getNumberOfPages doc)))
 
 
@@ -22,7 +22,7 @@
    the values provided are for the fields defined by
    info-fields"
   [pdfdoc]
-  (with-open [doc (PDDocument/load pdfdoc)]
+  (with-open [doc (common/load-pdf pdfdoc)]
     (let [info (.getDocumentInformation doc)
           info-fields ["title" "author" "subject" "keywords" "creator" "producer"]]
       (into {}
