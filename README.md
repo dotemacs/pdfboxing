@@ -2,9 +2,10 @@
 
 Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org/).
 
-[![Continuous Integration status](https://secure.travis-ci.org/dotemacs/pdfboxing.png)](http://travis-ci.org/dotemacs/pdfboxing)
-
-[!["Leiningen version"](https://clojars.org/pdfboxing/latest-version.svg)](https://clojars.org/pdfboxing)
+* [!["Clojar version"](https://img.shields.io/badge/clojars%20version-0.1.5-brightgreen.svg?style=flat-square)](https://clojars.org/pdfboxing)
+* [!["Continuous Integration status"](https://img.shields.io/travis/dotemacs/pdfboxing.svg?style=flat-square)](http://travis-ci.org/dotemacs/pdfboxing)
+* [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/bsd-license)
+* [![Dependency Status](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1)
 
 ## Usage
 
@@ -66,9 +67,19 @@ Such as title, author, subject, keywords, creator & producer
 (info/about-doc "test/pdfs/interactiveform.pdf")
 ```
 
-## License
+### Draw lines on a PDF document
 
-Released under the [BSD License](http://www.opensource.org/licenses/bsd-license.php).
+Supply a PDF document, a name for the output PDF document, the
+coordinates where the line should be drawn along with the page number
+on which the line should be drawn
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dotemacs/pdfboxing/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+```clojure
+(require '[pdfboxing.draw :as draw])
+(draw/draw-line :input-pdf "test/pdfs/clojure-1.pdf"
+                :output-pdf "ninja.pdf"
+                :coordinates {:page-number 0
+                              :x 0
+                              :y 160
+                              :x1 650
+                              :y1 160})
+```
