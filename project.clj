@@ -1,4 +1,4 @@
-(defproject pdfboxing "0.1.3"
+(defproject pdfboxing "0.1.4"
   :description "Clojure PDF manipulation library & wrapper for PDFBox"
   :url "https://github.com/dotemacs/pdfboxing"
   :license {:name "BSD"
