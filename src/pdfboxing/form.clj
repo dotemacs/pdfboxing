@@ -1,14 +1,15 @@
 (ns pdfboxing.form
+  (:require [pdfboxing.common :as common])
   (:import
-    [org.apache.pdfbox.pdmodel PDDocument PDDocumentCatalog]
-    [org.apache.pdfbox.pdmodel.common COSObjectable]
-    [org.apache.pdfbox.pdmodel.interactive.form PDAcroForm PDAppearance PDField PDSignatureField]
-    [java.io IOException]))
+   [org.apache.pdfbox.pdmodel PDDocumentCatalog]
+   [org.apache.pdfbox.pdmodel.common COSObjectable]
+   [org.apache.pdfbox.pdmodel.interactive.form PDAcroForm PDAppearance PDField PDSignatureField]
+   [java.io IOException]))
 
 (defn get-fields
   "get all the field names and their values from a PDF document"
   [pdfdoc]
-  (with-open [doc (PDDocument/load pdfdoc)]
+  (with-open [doc (common/load-pdf pdfdoc)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)
           fields (.getFields form)]
@@ -17,7 +18,7 @@
 (defn set-fields
   "fill in the fields with the values provided"
   [input output new-fields]
-  (with-open [doc (PDDocument/load input)]
+  (with-open [doc (common/load-pdf input)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)]
       (try
@@ -35,7 +36,7 @@
   the current form field names and values as the new names, and rename
   them"
   [input output fields-map]
-  (with-open [doc (PDDocument/load input)]
+  (with-open [doc (common/load-pdf input)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)]
       (doseq [field fields-map]
