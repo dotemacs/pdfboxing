@@ -1,5 +1,6 @@
 (ns pdfboxing.draw
-  (:import [org.apache.pdfbox.pdmodel PDDocument PDDocumentCatalog PDPage]
+  (:require [pdfboxing.common :as common])
+  (:import [org.apache.pdfbox.pdmodel PDDocumentCatalog PDPage]
            [org.apache.pdfbox.pdmodel.edit PDPageContentStream]))
 
 (defn get-catalog
@@ -53,7 +54,7 @@
    coordinates. Where coordinates have: page-number, x, y, x1, y1
    points where the line should be drawn."
   [& {:keys [input-pdf output-pdf coordinates]}]
-  (with-open [document (PDDocument/load input-pdf)]
+  (with-open [document (common/load-pdf input-pdf)]
     (with-open [content-stream (get-content-stream document (:page-number coordinates))]
       (use-rgb-colour content-stream)
       (set-line-width content-stream)
