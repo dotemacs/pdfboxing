@@ -24,7 +24,7 @@
   [pdfdoc]
   (with-open [doc (common/load-pdf pdfdoc)]
     (let [info (.getDocumentInformation doc)
-          info-fields ["title" "author" "subject" "keywords" "creator" "producer" "trapped" "metadata-keys"]]
+          info-fields ["title" "author" "subject" "keywords" "creator" "producer" "trapped" "metadata-keys" "creation-date" "modification-date"]]
       (into {}
             (map #(hash-map (str %1) (getter info %1)) info-fields)))))
 
