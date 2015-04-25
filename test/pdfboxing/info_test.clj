@@ -21,8 +21,7 @@
             "producer" "Mac OS X 10.8.5 Quartz PDFContext"}
            (dissoc (about-doc "test/pdfs/interactiveform.pdf")
                    "creation-date" ;#inst "2013-12-14T13:44:39.000+00:00"
-                   "modification-date" ;#inst "2013-12-14T13:44:39.000+00:00"
-                   ))))
+                   "modification-date")))) ;#inst "2013-12-14T13:44:39.000+00:00"
   (testing "for the metadata value"
     (is (= "Example of an Interactive PDF Form"
            (metadata-value "test/pdfs/interactiveform.pdf" "Title")))
@@ -36,5 +35,4 @@
             "Producer" "Mac OS X 10.8.5 Quartz PDFContext",
             "Subject" "PDF forms",
             "Title" "Example of an Interactive PDF Form"}
-           (metadata-values "test/pdfs/interactiveform.pdf")))
-    ))
+           (metadata-values "test/pdfs/interactiveform.pdf")))))
