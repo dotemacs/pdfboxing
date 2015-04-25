@@ -33,3 +33,12 @@
   [pdfdoc field-name]
   (with-open [doc (common/load-pdf pdfdoc)]
     (.. doc getDocumentInformation (getCustomMetadataValue field-name))))
+
+(defn metadata-values
+  "get all values of a custom metadata information field for the document."
+  [pdfdoc]
+  (with-open [doc (common/load-pdf pdfdoc)]
+    (let [info (.. doc getDocumentInformation)]
+      (into {}
+            (map #(hash-map (str %1) (.. info (getCustomMetadataValue %1)))
+                 (.. info getMetadataKeys))))))
