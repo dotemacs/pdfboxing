@@ -19,4 +19,10 @@
             "metadata-keys" #{"AAPL:Keywords" "CreationDate" "Creator" "Keywords" "ModDate" "Producer" "Subject" "Title"}
             "creator" "Adobe InDesign CS3 (5.0.4)",
             "producer" "Mac OS X 10.8.5 Quartz PDFContext"}
-           (about-doc "test/pdfs/interactiveform.pdf")))))
+           (about-doc "test/pdfs/interactiveform.pdf"))))
+  (testing "for the metadata value"
+    (is (= "Example of an Interactive PDF Form"
+           (metadata-value "test/pdfs/interactiveform.pdf" "Title")))
+    (is (= "D:20131214134439Z00'00'"
+           (metadata-value "test/pdfs/interactiveform.pdf" "CreationDate")))
+    ))

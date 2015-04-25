@@ -27,3 +27,9 @@
           info-fields ["title" "author" "subject" "keywords" "creator" "producer" "trapped" "metadata-keys"]]
       (into {}
             (map #(hash-map (str %1) (getter info %1)) info-fields)))))
+
+(defn metadata-value
+  "get the value of a custom metadata information field for the document."
+  [pdfdoc field-name]
+  (with-open [doc (common/load-pdf pdfdoc)]
+    (.. doc getDocumentInformation (getCustomMetadataValue field-name))))
