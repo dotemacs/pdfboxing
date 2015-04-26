@@ -14,16 +14,37 @@
 (defn- getter
   "private helper function to be used by about-doc"
   [obj method-str]
-  (let [get-method (str "get" (string/capitalize method-str))]
+  (let [get-method (str "get"
+                        (string/join
+                         (map string/capitalize
+                              (string/split method-str #"-"))))]
     (Reflector/invokeInstanceMethod obj get-method (to-array []))))
 
 (defn about-doc
   "get the basic information about the given document
    the values provided are for the fields defined by
    info-fields"
-  [pdfdoc]
+  [pdfdoc & {:keys [keys]
+             :or {keys ["title" "author" "subject" "keywords"
+                        "creator" "producer" "trapped" "metadata-keys"
+                        "creation-date" "modification-date"]}}]
   (with-open [doc (common/load-pdf pdfdoc)]
     (let [info (.getDocumentInformation doc)
-          info-fields ["title" "author" "subject" "keywords" "creator" "producer"]]
+          info-fields keys]
       (into {}
             (map #(hash-map (str %1) (getter info %1)) info-fields)))))
+
+(defn metadata-value
+  "get the value of a custom metadata information field for the document."
+  [pdfdoc field-name]
+  (with-open [doc (common/load-pdf pdfdoc)]
+    (.. doc getDocumentInformation (getCustomMetadataValue field-name))))
+
+(defn metadata-values
+  "get all values of a custom metadata information field for the document."
+  [pdfdoc]
+  (with-open [doc (common/load-pdf pdfdoc)]
+    (let [info (.. doc getDocumentInformation)]
+      (into {}
+            (map #(hash-map (str %1) (.. info (getCustomMetadataValue %1)))
+                 (.. info getMetadataKeys))))))
