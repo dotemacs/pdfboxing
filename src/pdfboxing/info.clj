@@ -76,17 +76,17 @@
            can-print-degraded false
            read-only true}}]
   (with-open [doc (common/load-pdf pdfdoc)]
-    (let [ap (doto (AccessPermission.)
-               (.setCanAssembleDocument can-assemble-document)
-               (.setCanExtractContent can-extract-content)
-               (.setCanExtractForAccessibility can-extract-for-accessibility)
-               (.setCanFillInForm can-fill-in-form)
-               (.setCanModify can-modify)
-               (.setCanModifyAnnotations can-modify-annotations)
-               (.setCanPrint can-print)
-               (.setCanPrintDegraded can-print-degraded)
-               #(if read-only (.setReadOnly %)))]
-      (.protect doc (doto (StandardProtectionPolicy.
-                           owner-password user-password ap)
-                      (.setEncryptionKeyLength 128)))
-      (.save doc output-pdf))))
+    (->> (doto (AccessPermission.)
+           (.setCanAssembleDocument can-assemble-document)
+           (.setCanExtractContent can-extract-content)
+           (.setCanExtractForAccessibility can-extract-for-accessibility)
+           (.setCanFillInForm can-fill-in-form)
+           (.setCanModify can-modify)
+           (.setCanModifyAnnotations can-modify-annotations)
+           (.setCanPrint can-print)
+           (.setCanPrintDegraded can-print-degraded)
+           #(if read-only (.setReadOnly %)))
+         (#(doto (StandardProtectionPolicy. owner-password user-password %)
+             (.setEncryptionKeyLength 128)))
+         (.protect doc))
+    (.save doc output-pdf)))
