@@ -85,7 +85,7 @@
            (.setCanModifyAnnotations can-modify-annotations)
            (.setCanPrint can-print)
            (.setCanPrintDegraded can-print-degraded)
-           #(if read-only (.setReadOnly %)))
+           #(when read-only (.setReadOnly %)))
          (#(doto (StandardProtectionPolicy. owner-password user-password %)
              (.setEncryptionKeyLength 128)))
          (.protect doc))
