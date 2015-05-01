@@ -83,3 +83,18 @@ on which the line should be drawn
                               :x1 650
                               :y1 160})
 ```
+
+### Protect a PDF document with password
+
+Supply a PDF document, a name for the output PDF document, an owner
+password. user-password is optional and default value is empty, so user
+can view the protected document without password.
+
+```clojure
+(require '[pdfboxing.info :as info])
+(info/protect-doc "test/pdfs/interactiveform.pdf" "12345"
+                  :output-pdf "encrypted.pdf"
+                  :user-password "abc"
+                  :can-print true
+                  :can-fill-in-form true)
+```
