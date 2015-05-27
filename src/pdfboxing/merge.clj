@@ -46,9 +46,3 @@
       (.appendDocument merger destination d)
       (.close d))
     destination))
-
-(defn pddocuments->pdf
-  [& {:keys [output input]}]
-  (let [destination (merge-pddocuments :input input)]
-    (.save destination output)
-    (.close destination)))
