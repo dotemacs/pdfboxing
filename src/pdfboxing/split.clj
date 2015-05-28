@@ -2,7 +2,7 @@
   (:require [pdfboxing.common :as common]
             [pdfboxing.merge :as merge]
             [pdfboxing.info :as info])
-  (:import [org.apache.pdfbox.util Splitter]
+  (:import [org.apache.pdfbox.util Splitter PDFMergerUtility]
            [org.apache.pdfbox.pdfwriter COSWriter]
            [java.io File FileInputStream FileOutputStream]
            [org.apache.pdfbox.pdmodel PDDocument]))
@@ -21,6 +21,20 @@
       (merge/throw-exception "input must be a string"))
     (check-if-integer (filter (complement nil?) int-args))))
 
+(defn write-doc [doc filename]
+  (with-open [output (FileOutputStream. filename)
+              writer (COSWriter. output)]
+    (.write writer doc)))
+
+(defn merge-docs
+  [docs]
+  (let [merger (PDFMergerUtility.)
+        destination (PDDocument.)]
+    (doseq [d docs]
+      (.appendDocument merger destination d)
+      (.close d))
+    destination))
+
 (defn split-pdf
   "split pdf into pages"
   [& {:keys [input start end split]}]
@@ -32,26 +46,23 @@
     (when split (.setSplitAtPage splitter split))
     (.split splitter doc)))
 
-(defn split-pdf-at
-  "Produces a seq of two PDDocuments from :input by splitting the document at :split-page."
-  [& {:keys [input split-page]}]
-  (let [total-pages (info/page-number input)
-        doc-1 (split-pdf :input input :end split-page :split total-pages)
-        doc-2 (split-pdf :input input :start (inc split-page) :split total-pages)]    
-     (concat doc-1 doc-2)))
+(defn split-at
+  "splits a pdf into two documents and writes them to disk"
+  [& {:keys [input split]}]
+  (let [base-name (first (clojure.string/split input #".pdf"))
+        f-names (for [x (range 1 3)] (str base-name "-" x ".pdf"))
+        pages (split-pdf :input input)
+        split-page (or split (/ (count pages) 2))
+        doc-1 (merge-docs (take split-page pages))
+        doc-2 (merge-docs (drop split-page pages))]
+    (map write-doc [doc-1 doc-2] f-names)))
 
-;; Works half the time. Why???
-(defn split-pdf->disk
-  "Save the split PDDocuments to disk"
-  [& {:keys [input output]}]
-  (let [base-name (if (.endsWith output ".pdf")
-                    (apply str (drop-last 4 output))
-                    output)
-        f-names (for [x (range (count input))] (str base-name "-" x ".pdf"))
-        write-document (fn [doc filename]
-                         (with-open [output (FileOutputStream. filename)
-                                     writer (COSWriter. output)]
-                           (.write writer doc)))]
-    (map write-document input f-names)))
 
-#_(split-pdf->disk :input (split-pdf-at :input "C:/Users/xb0g/Desktop/2014_Q4.pdf" :split-page 5) :output "C:/Users/xb0g/Desktop/test.pdf")
+
+
+
+
+
+
+
+

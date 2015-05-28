@@ -1,7 +1,6 @@
 (ns pdfboxing.merge
   (:require [pdfboxing.common :as common])
   (:import [org.apache.pdfbox.util PDFMergerUtility]
-           [org.apache.pdfbox.pdmodel PDDocument]
            [java.io File FileInputStream]))
 
 (defn throw-exception
@@ -36,13 +35,3 @@
         (.addSource merger (FileInputStream. (File. f))))
       (.setDestinationFileName merger output)
       (.mergeDocuments merger)))
-
-(defn merge-pddocuments
-  "merge multiple PDDocuments into a single PDDocument"
-  [& {:keys [input]}]
-  (let [merger (PDFMergerUtility.)
-        destination (PDDocument.)]
-    (doseq [d input]
-      (.appendDocument merger destination d)
-      (.close d))
-    destination))
