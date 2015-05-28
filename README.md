@@ -23,6 +23,15 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 (pdf/merge-pdfs :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"] :output "foo.pdf")
 ```
 
+### Split a PDF into mutliple PDDocuments
+```clojure
+ (require '[pdfboxing.split :as pdf])
+ (pdf/split-pdf :input "pdfs/clojure.pdf" :start 1 :end 8) ;=> (list of PDDocument pages 1 through 8)
+ (pdf/split-pdf :input "pdfs/clojure.pdf") ;=> splits the pdf into single pages as a list of PDDocument
+ (pdf/split-pdf-at :input "pdfs/clojure.pdf") ;=> splits the pdf in half and writes them to disk as clojure-1.pdf and clojure-2.pdf
+ (pdf/split-pdf-at :input "pdfs/clojure.pdf" :split 5) ;=> splits into two pdfs the first having 5 pages, second has rest
+ ```
+
 ### List form fields of a PDF
 
 To list fields and values:

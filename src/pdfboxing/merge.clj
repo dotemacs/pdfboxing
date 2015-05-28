@@ -34,4 +34,4 @@
       (doseq [f input]
         (.addSource merger (FileInputStream. (File. f))))
       (.setDestinationFileName merger output)
-    (.mergeDocuments merger)))
+      (.mergeDocuments merger)))
