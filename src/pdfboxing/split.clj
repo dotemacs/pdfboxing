@@ -46,7 +46,7 @@
     (when split (.setSplitAtPage splitter split))
     (.split splitter doc)))
 
-(defn split-at
+(defn split-pdf-at
   "splits a pdf into two documents and writes them to disk"
   [& {:keys [input split]}]
   (let [base-name (first (clojure.string/split input #".pdf"))
