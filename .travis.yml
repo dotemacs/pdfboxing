@@ -1,7 +1,9 @@
 language: clojure
+sudo: false
 lein: lein2
 script: lein2 do clean, test
 jdk:
   - openjdk6
   - openjdk7
   - oraclejdk7
+  - oraclejdk8
