@@ -27,7 +27,7 @@
             (.setValue (.getField form (name (key field))) (val field)))
           (.save doc output))
         (catch IOException e
-          (str "Error: can't add non-simple fonts, this is a constraint of PDFBox."))
+          (.getMessage e))
         (catch NullPointerException e
           (str "Error: non existent field provided"))))))
 
