@@ -42,12 +42,12 @@
 
 (deftest populating-fields
   (testing "Error handling for non simple fonts"
-    (is (= "Error: can't add non-simple fonts, this is a constraint of PDFBox."
-           (set-fields "test/pdfs/interactiveform.pdf"
-                       "test/pdfs/filled-in.pdf"
-                       {"Name_Last" "Last",
-                        "Name_First" "First",
-                        "Name_Middle" "Middle"}))))
+    (is (thrown? java.io.IOException
+                 (set-fields "test/pdfs/interactiveform.pdf"
+                             "test/pdfs/filled-in.pdf"
+                             {"Name_Last" "Last",
+                              "Name_First" "First",
+                              "Name_Middle" "Middle"}))))
 
   (testing "Non existent field filling"
     (is (= "Error: non existent field provided"
