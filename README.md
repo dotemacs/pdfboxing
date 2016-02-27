@@ -112,10 +112,10 @@ password. user-password is optional and default value is empty, so user
 can view the protected document without password.
 
 ```clojure
-(require '[pdfboxing.info :as info])
-(info/protect-doc "test/pdfs/interactiveform.pdf" "12345"
-                  :output-pdf "encrypted.pdf"
-                  :user-password "abc"
-                  :can-print true
-                  :can-fill-in-form true)
+(require '[pdfboxing.security :as security])
+(security/protect-doc "test/pdfs/interactiveform.pdf" "12345"
+                      :output-pdf "encrypted.pdf"
+                      :user-password "abc"
+                      :can-print true
+                      :can-fill-in-form true)
 ```

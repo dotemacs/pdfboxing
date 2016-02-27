@@ -1,6 +1,5 @@
 (ns pdfboxing.info-test
   (:require [clojure.test :refer :all]
-            [clojure.java.io :as io]
             [pdfboxing.info :refer :all]))
 
 (deftest document-info
@@ -46,12 +45,4 @@
             "Producer" "Mac OS X 10.8.5 Quartz PDFContext",
             "Subject" "PDF forms",
             "Title" "Example of an Interactive PDF Form"}
-           (metadata-values "test/pdfs/interactiveform.pdf"))))
-  (testing "password protection"
-    (let [ofile "test/pdfs/encrypted.pdf"]
-      (protect-doc "test/pdfs/interactiveform.pdf" "12345"
-                   :user-password "abc"
-                   :output-pdf ofile)
-      (is (.exists (io/as-file ofile)))
-      (when (.exists (io/as-file ofile))
-        (io/delete-file ofile)))))
+           (metadata-values "test/pdfs/interactiveform.pdf")))))

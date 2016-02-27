@@ -2,9 +2,7 @@
   (:require [clojure.string :as string]
             [pdfboxing.common :as common])
   (:import [clojure.lang Reflector]
-           [org.apache.pdfbox.pdmodel PDDocumentCatalog PDDocumentInformation]
-           [org.apache.pdfbox.pdmodel.encryption
-            AccessPermission StandardProtectionPolicy]))
+           [org.apache.pdfbox.pdmodel PDDocumentCatalog PDDocumentInformation]))
 
 (defn page-number
   "return number of pages of a PDF document"
@@ -50,43 +48,3 @@
       (into {}
             (map #(hash-map (str %1) (.. info (getCustomMetadataValue %1)))
                  (.. info getMetadataKeys))))))
-
-(defn protect-doc
-  "Protect the document with password."
-  [pdfdoc owner-password
-   & {:keys [user-password
-             output-pdf
-             can-assemble-document
-             can-extract-content
-             can-extract-for-accessibility
-             can-fill-in-form
-             can-modify
-             can-modify-annotations
-             can-print
-             can-print-degraded
-             read-only]
-      :or {user-password ""
-           can-assemble-document false
-           can-extract-content false
-           can-extract-for-accessibility false
-           can-fill-in-form false
-           can-modify false
-           can-modify-annotations false
-           can-print false
-           can-print-degraded false
-           read-only true}}]
-  (with-open [doc (common/load-pdf pdfdoc)]
-    (->> (doto (AccessPermission.)
-           (.setCanAssembleDocument can-assemble-document)
-           (.setCanExtractContent can-extract-content)
-           (.setCanExtractForAccessibility can-extract-for-accessibility)
-           (.setCanFillInForm can-fill-in-form)
-           (.setCanModify can-modify)
-           (.setCanModifyAnnotations can-modify-annotations)
-           (.setCanPrint can-print)
-           (.setCanPrintDegraded can-print-degraded)
-           #(when read-only (.setReadOnly %)))
-         (#(doto (StandardProtectionPolicy. owner-password user-password %)
-             (.setEncryptionKeyLength 128)))
-         (.protect doc))
-    (.save doc output-pdf)))
