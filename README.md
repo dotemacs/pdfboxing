@@ -2,7 +2,7 @@
 
 Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org/).
 
-* [!["Clojar version"](https://img.shields.io/badge/clojars%20version-0.1.5-brightgreen.svg?style=flat-square)](https://clojars.org/pdfboxing)
+* [!["Clojar version"](https://img.shields.io/clojars/v/pdfboxing.svg?style=flat-square)](https://clojars.org/pdfboxing)
 * [!["Continuous Integration status"](https://img.shields.io/travis/dotemacs/pdfboxing.svg?style=flat-square)](http://travis-ci.org/dotemacs/pdfboxing)
 * [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/bsd-license)
 * [![Dependency Status](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1)
@@ -21,6 +21,27 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 ```clojure
 (require '[pdfboxing.merge :as pdf])
 (pdf/merge-pdfs :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"] :output "foo.pdf")
+```
+
+### Split a PDF into mutliple PDDocuments
+```clojure
+ (require '[pdfboxing.split :as pdf])
+```
+List of PDDocument pages 1 through 8
+```clojure
+ (pdf/split-pdf :input "pdfs/clojure.pdf" :start 1 :end 8)
+```
+Splits the PDF into single pages as a list of PDDocument
+```clojure
+ (pdf/split-pdf :input "pdfs/clojure.pdf")
+```
+Splits the PDF in half and writes them to disk as clojure-1.pdf and clojure-2.pdf
+```clojure
+ (pdf/split-pdf-at :input "pdfs/clojure.pdf")
+```
+Splits into two PDFs, the first having 5 pages and second has rest
+```clojure
+ (pdf/split-pdf-at :input "pdfs/clojure.pdf" :split 5)
 ```
 
 ### List form fields of a PDF
