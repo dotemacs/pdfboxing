@@ -20,7 +20,7 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 
 ```clojure
 (require '[pdfboxing.merge :as pdf])
-(pdf/merge-pdfs :input ["pdfs/clojure-1.pdf" "pdfs/clojure-2.pdf"] :output "foo.pdf")
+(pdf/merge-pdfs :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"] :output "foo.pdf")
 ```
 
 ### Split a PDF into mutliple PDDocuments
@@ -29,19 +29,19 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 ```
 List of PDDocument pages 1 through 8
 ```clojure
- (pdf/split-pdf :input "pdfs/clojure.pdf" :start 1 :end 8)
+ (pdf/split-pdf :input "test/pdfs/multi-page.pdf" :start 1 :end 8)
 ```
 Splits the PDF into single pages as a list of PDDocument
 ```clojure
- (pdf/split-pdf :input "pdfs/clojure.pdf")
+ (pdf/split-pdf :input "test/pdfs/multi-page.pdf")
 ```
 Splits the PDF in half and writes them to disk as clojure-1.pdf and clojure-2.pdf
 ```clojure
- (pdf/split-pdf-at :input "pdfs/clojure.pdf")
+ (pdf/split-pdf-at :input "test/pdfs/multi-page.pdf")
 ```
 Splits into two PDFs, the first having 5 pages and second has rest
 ```clojure
- (pdf/split-pdf-at :input "pdfs/clojure.pdf" :split 5)
+ (pdf/split-pdf-at :input "test/pdfs/multi-page.pdf" :split 5)
 ```
 
 ### List form fields of a PDF
@@ -50,7 +50,7 @@ To list fields and values:
 
 ```clojure
 (require '[pdfboxing.form :as form])
-(form/get-fields "pdfs/interactiveform.pdf"))
+(form/get-fields "test/pdfs/interactiveform.pdf"))
 {"Emergency_Phone" "", "ZIP" "", "COLLEGE NO DEGREE" "", ...}
 ```
 ### Fill in PDF forms
@@ -61,7 +61,7 @@ the fields filled in:
 
 ```clojure
 (require '[pdfboxing.form :as form])
-(form/set-fields "pdfs/fillable.pdf" "pdfs/new.pdf" {"Text10" "My first name"})
+(form/set-fields "test/pdfs/fillable.pdf" "test/pdfs/new.pdf" {"Text10" "My first name"})
 ```
 
 ### Rename form fields of a PDF
