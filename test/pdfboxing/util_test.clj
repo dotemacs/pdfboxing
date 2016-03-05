@@ -11,3 +11,8 @@
   (testing "line length of the second line of a given PDF file"
     (is (false? (line-long-enough? "123456789")))
     (is (true? (line-long-enough? "12345")))))
+
+(deftest first-char-of-a-string
+  (testing "the start of the second line"
+    (is (false? (first-char-is-percent? (char \f))))
+    (is (true? (first-char-is-percent? (char \%))))))

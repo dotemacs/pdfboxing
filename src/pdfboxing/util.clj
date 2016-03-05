@@ -9,3 +9,8 @@
   "check the length of the second line of a given PDF file"
     [second-line]
     (>= 5 (.length second-line)))
+
+(defn first-char-is-percent?
+  "check that the second line of a given PDF starts with a '%'"
+  [first-char]
+  (= "%" (str first-char)))
