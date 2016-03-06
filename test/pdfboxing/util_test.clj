@@ -21,3 +21,9 @@
   (testing "if passed in bytes are greater than 127"
     (is (true? (valid-bytes? [0xff 0xe1 0xe9 0xeb 0xd3])))
     (is (false? (valid-bytes? [0x11 0xe1 0xe9 0xeb 0xd3])))))
+
+(deftest line-content-validation
+  (let [second-line (second (line-seq (clojure.java.io/reader "test/pdfs/clojure-1.pdf")))]
+    (testing "if the line supplied is valid"
+      (is (true? (valid-line-content? second-line)))
+      (is (false? (valid-line-content? (clojure.string/replace second-line #"%" "!")))))))

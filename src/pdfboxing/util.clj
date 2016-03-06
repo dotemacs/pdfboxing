@@ -20,3 +20,10 @@
   than 127"
   [given-bytes]
   (not-any? false? (map #(< 0x80 (int %)) given-bytes)))
+
+(defn valid-line-content?
+  "check if the line given is valid, to be used to verify the second
+  line of a PDF file"
+    [second-line]
+    (and (first-char-is-percent? (char (first (.getBytes second-line))))
+         (valid-bytes? (rest second-line))))
