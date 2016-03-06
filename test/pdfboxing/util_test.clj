@@ -8,9 +8,9 @@
     (is (false? (first-line-valid? nil)))
     (is (true? (first-line-valid? "%PDF-1.9")))))
 
-(deftest lenght-of-line
+(deftest length-of-line
   (testing "line length of the second line of a given PDF file"
-    (is (false? (line-long-enough? "123456789")))
+    (is (false? (line-long-enough? "1234")))
     (is (true? (line-long-enough? "12345")))))
 
 (deftest first-char-of-a-string

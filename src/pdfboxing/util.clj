@@ -10,7 +10,7 @@
 (defn line-long-enough?
   "check the length of the second line of a given PDF file"
     [second-line]
-    (>= 5 (.length second-line)))
+    (>= (.length second-line) 5))
 
 (defn first-char-is-percent?
   "check that the second line of a given PDF starts with a '%'"
