@@ -5,6 +5,7 @@
 (deftest first-line-validation
   (testing "the contents of the first line"
     (is (false? (first-line-valid? "%PDF-2")))
+    (is (false? (first-line-valid? nil)))
     (is (true? (first-line-valid? "%PDF-1.9")))))
 
 (deftest lenght-of-line
