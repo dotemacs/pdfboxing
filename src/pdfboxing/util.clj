@@ -27,3 +27,10 @@
     [second-line]
     (and (first-char-is-percent? (char (first (.getBytes second-line))))
          (valid-bytes? (rest second-line))))
+
+(defn second-line-valid?
+  "check if the second line of a PDF is valid"
+  [second-line]
+  (if (line-long-enough? second-line)
+    (valid-line-content? second-line)
+    false))

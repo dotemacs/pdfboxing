@@ -27,3 +27,8 @@
     (testing "if the line supplied is valid"
       (is (true? (valid-line-content? second-line)))
       (is (false? (valid-line-content? (clojure.string/replace second-line #"%" "!")))))))
+
+(deftest second-line-validation
+  (let [second-line (second (line-seq (clojure.java.io/reader "test/pdfs/clojure-1.pdf")))]
+    (testing "the second line of a PDF file"
+      (is (true? (second-line-valid? second-line))))))
