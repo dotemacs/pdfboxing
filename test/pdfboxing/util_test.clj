@@ -16,3 +16,8 @@
   (testing "the start of the second line"
     (is (false? (first-char-is-percent? (char \f))))
     (is (true? (first-char-is-percent? (char \%))))))
+
+(deftest bytes-validation
+  (testing "if passed in bytes are greater than 127"
+    (is (true? (valid-bytes? [0xff 0xe1 0xe9 0xeb 0xd3])))
+    (is (false? (valid-bytes? [0x11 0xe1 0xe9 0xeb 0xd3])))))

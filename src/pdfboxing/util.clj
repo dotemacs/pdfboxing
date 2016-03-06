@@ -14,3 +14,9 @@
   "check that the second line of a given PDF starts with a '%'"
   [first-char]
   (= "%" (str first-char)))
+
+(defn valid-bytes?
+  "check that the bytes on the second line of a given PDF are larger
+  than 127"
+  [given-bytes]
+  (not-any? false? (map #(< 0x80 (int %)) given-bytes)))
