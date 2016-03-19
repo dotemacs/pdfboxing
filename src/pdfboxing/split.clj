@@ -46,7 +46,7 @@
   "split pdf into pages"
   [& {:keys [input start end split]}]
   {:pre [(arg-check input start end split)]}
-  (let [doc (common/load-pdf input)
+  (let [doc (common/obtain-document input)
         splitter (Splitter.)]
     (when start (.setStartPage splitter start))
     (when end (.setEndPage splitter end))

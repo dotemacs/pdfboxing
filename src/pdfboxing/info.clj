@@ -7,7 +7,7 @@
 (defn page-number
   "return number of pages of a PDF document"
   [pdfdoc]
-  (with-open [doc (common/load-pdf pdfdoc)]
+  (with-open [doc (common/obtain-document pdfdoc)]
     (.getNumberOfPages doc)))
 
 
@@ -28,7 +28,7 @@
              :or {keys ["title" "author" "subject" "keywords"
                         "creator" "producer" "trapped" "metadata-keys"
                         "creation-date" "modification-date"]}}]
-  (with-open [doc (common/load-pdf pdfdoc)]
+  (with-open [doc (common/obtain-document pdfdoc)]
     (let [info (.getDocumentInformation doc)
           info-fields keys]
       (into {}
@@ -37,13 +37,13 @@
 (defn metadata-value
   "get the value of a custom metadata information field for the document."
   [pdfdoc field-name]
-  (with-open [doc (common/load-pdf pdfdoc)]
+  (with-open [doc (common/obtain-document pdfdoc)]
     (.. doc getDocumentInformation (getCustomMetadataValue field-name))))
 
 (defn metadata-values
   "get all values of a custom metadata information field for the document."
   [pdfdoc]
-  (with-open [doc (common/load-pdf pdfdoc)]
+  (with-open [doc (common/obtain-document pdfdoc)]
     (let [info (.. doc getDocumentInformation)]
       (into {}
             (map #(hash-map (str %1) (.. info (getCustomMetadataValue %1)))
