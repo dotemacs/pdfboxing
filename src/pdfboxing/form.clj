@@ -9,7 +9,7 @@
 (defn get-fields
   "get all the field names and their values from a PDF document"
   [pdfdoc]
-  (with-open [doc (common/load-pdf pdfdoc)]
+  (with-open [doc (common/obtain-document pdfdoc)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)
           fields (.getFields form)]
@@ -18,7 +18,7 @@
 (defn set-fields
   "fill in the fields with the values provided"
   [input output new-fields]
-  (with-open [doc (common/load-pdf input)]
+  (with-open [doc (common/obtain-document input)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)]
       (try
@@ -34,7 +34,7 @@
   the current form field names and values as the new names, and rename
   them"
   [input output fields-map]
-  (with-open [doc (common/load-pdf input)]
+  (with-open [doc (common/obtain-document input)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)]
       (doseq [field fields-map]

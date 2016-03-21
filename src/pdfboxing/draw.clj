@@ -54,7 +54,7 @@
    coordinates. Where coordinates have: page-number, x, y, x1, y1
    points where the line should be drawn."
   [& {:keys [input-pdf output-pdf coordinates]}]
-  (with-open [document (common/load-pdf input-pdf)]
+  (with-open [document (common/obtain-document input-pdf)]
     (with-open [content-stream (get-content-stream document (:page-number coordinates))]
       (use-rgb-colour content-stream)
       (set-line-width content-stream)
