@@ -13,36 +13,30 @@
              "modification-date"}
            (set (keys (about-doc "test/pdfs/interactiveform.pdf"))))))
   (testing "if the full document info matches"
-    (is (= {"title" "Example of an Interactive PDF Form",
-            "author" nil,
-            "subject" "PDF forms",
-            "keywords" "forms, flat, fillable",
-            "trapped" nil,
-            "metadata-keys" #{"AAPL:Keywords" "CreationDate"
-                              "Creator" "Keywords" "ModDate" "Producer"
-                              "Subject" "Title"}
-            "creator" "Adobe InDesign CS3 (5.0.4)",
-            "producer" "Mac OS X 10.8.5 Quartz PDFContext"}
+    (is (= {"author" "Bruce",
+            "creator" "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc",
+            "producer" "ScanSoft PDF Create! 4",
+            "subject" nil,
+            "keywords" nil,
+            "title" "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc",
+            "metadata-keys" #{"Author" "CreationDate" "Creator" "ModDate" "Producer" "Title"}, "trapped" nil}
            (dissoc (about-doc "test/pdfs/interactiveform.pdf")
-                   "creation-date" ;#inst "2013-12-14T13:44:39.000+00:00"
-                   "modification-date")))) ;#inst "2013-12-14T13:44:39.000+00:00"
+                   "creation-date"
+                   "modification-date"))))
   (testing "only requested keys value matches"
-    (is (= {"title" "Example of an Interactive PDF Form",
-            "subject" "PDF forms"}
+    (is (= {"title" "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc", "subject" nil}
            (about-doc "test/pdfs/interactiveform.pdf"
                       :keys ["title" "subject"]))))
   (testing "for the metadata value"
-    (is (= "Example of an Interactive PDF Form"
+    (is (= "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc"
            (metadata-value "test/pdfs/interactiveform.pdf" "Title")))
-    (is (= "D:20131214134439Z00'00'"
+    (is (= "D:20070222150352-05'00'"
            (metadata-value "test/pdfs/interactiveform.pdf"
                            "CreationDate")))
-    (is (= {"AAPL:Keywords" nil,
-            "CreationDate" "D:20131214134439Z00'00'",
-            "Creator" "Adobe InDesign CS3 (5.0.4)",
-            "Keywords" "forms, flat, fillable",
-            "ModDate" "D:20131214134439Z00'00'",
-            "Producer" "Mac OS X 10.8.5 Quartz PDFContext",
-            "Subject" "PDF forms",
-            "Title" "Example of an Interactive PDF Form"}
+    (is (= {"Author" "Bruce",
+            "CreationDate" "D:20070222150352-05'00'",
+            "Creator" "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc",
+            "ModDate" "D:20070222222331-05'00'",
+            "Producer" "ScanSoft PDF Create! 4",
+            "Title" "Microsoft Word - Fillable_PDF_Sample_from_TheWebJockeys_vB.doc"}
            (metadata-values "test/pdfs/interactiveform.pdf")))))
