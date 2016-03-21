@@ -2,7 +2,7 @@
   (:require [pdfboxing.common :as common]
             [pdfboxing.merge :as merge]
             [pdfboxing.info :as info])
-  (:import [org.apache.pdfbox.util Splitter PDFMergerUtility]
+  (:import [org.apache.pdfbox.multipdf Splitter PDFMergerUtility]
            [org.apache.pdfbox.pdmodel PDDocument]))
 
 (defn check-if-integer

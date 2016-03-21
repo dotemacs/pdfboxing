@@ -1,6 +1,6 @@
 (ns pdfboxing.text
   (:require [pdfboxing.common :as common])
-  (:import [org.apache.pdfbox.util PDFTextStripper]))
+  (:import [org.apache.pdfbox.text PDFTextStripper]))
 
 (defn extract
   "get text from a PDF document"
