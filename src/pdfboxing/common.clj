@@ -36,6 +36,11 @@
     (if (is-pdf? source)
       (load-pdf source)))
 
+  java.io.File
+  (obtain-document [source]
+    (if (is-pdf? source)
+      (load-pdf source)))
+
   org.apache.pdfbox.pdmodel.PDDocument
   (obtain-document [source]
     source))

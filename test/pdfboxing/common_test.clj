@@ -1,5 +1,6 @@
 (ns pdfboxing.common-test
   (:require [clojure.test :refer :all]
+            [clojure.java.io :as io]
             [pdfboxing.common :refer :all]))
 
 (deftest pdf-existance-check
@@ -18,3 +19,9 @@
     (is (true?  (instance?
                    org.apache.pdfbox.pdmodel.PDDocument
                    (obtain-document (obtain-document "test/pdfs/hello.pdf")))))))
+
+(deftest obtain-document-returns-pddocument-if-provided-file-check
+  (testing "obtain-document returns a PDDocument if a string path to a PDF is a supplied"
+    (is (true?  (instance?
+                   org.apache.pdfbox.pdmodel.PDDocument
+                   (obtain-document (io/file "test/pdfs/hello.pdf")))))))
