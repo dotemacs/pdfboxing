@@ -16,7 +16,9 @@
       (do
         (.parse parser)
         true)
-      (catch Exception e false))))
+      (catch Exception e false)
+      (finally
+        (.. parser getPDDocument close)))))
 
 (defn load-pdf
   "Load a given PDF only after checking if it really is a PDF"
