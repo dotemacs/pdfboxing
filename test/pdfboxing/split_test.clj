@@ -28,5 +28,9 @@
         splitting-outcome (split/split-pdf :input "test/pdfs/multi-page.pdf")]
     (is (true? (> (count splitting-outcome) 0)))
     (doall (for [doc splitting-outcome]
-             (is (instance? org.apache.pdfbox.pdmodel.PDDocument doc))))))
+             (try
+               (is (instance? org.apache.pdfbox.pdmodel.PDDocument doc))
+               (finally
+                 (when (instance? org.apache.pdfbox.pdmodel.PDDocument doc)
+                   (.close doc))))))))
 

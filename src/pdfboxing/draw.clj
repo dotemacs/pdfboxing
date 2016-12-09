@@ -1,7 +1,6 @@
 (ns pdfboxing.draw
   (:require [pdfboxing.common :as common])
-  (:import [org.apache.pdfbox.pdmodel PDDocumentCatalog PDPage]
-           [org.apache.pdfbox.pdmodel.edit PDPageContentStream]))
+  (:import [org.apache.pdfbox.pdmodel PDDocumentCatalog PDPage PDPageContentStream]))
 
 (defn get-catalog
   "Get a catalog from a PDF document"
