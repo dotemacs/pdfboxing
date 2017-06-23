@@ -1,10 +1,9 @@
 (ns pdfboxing.common
   (:require [clojure.java.io :as io])
-  (:import
-    [javax.activation FileDataSource]
-    [org.apache.pdfbox.pdmodel PDDocument]
-    [org.apache.pdfbox.preflight.parser PreflightParser]
-    [java.io File]))
+  (:import java.io.File
+           javax.activation.FileDataSource
+           org.apache.pdfbox.pdmodel.PDDocument
+           org.apache.pdfbox.preflight.parser.PreflightParser))
 
 (defn try-get-as-pdf
   "Try and get the pdf-file-or-path as a PDF.

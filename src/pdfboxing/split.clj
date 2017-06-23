@@ -1,9 +1,7 @@
 (ns pdfboxing.split
   (:require [pdfboxing.common :as common]
-            [pdfboxing.merge :as merge]
-            [pdfboxing.info :as info])
-  (:import [org.apache.pdfbox.multipdf Splitter PDFMergerUtility]
-           [org.apache.pdfbox.pdmodel PDDocument]))
+            [pdfboxing.merge :as merge])
+  (:import [org.apache.pdfbox.multipdf PDFMergerUtility Splitter]))
 
 (defn check-if-integer
   [coll]

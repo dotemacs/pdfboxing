@@ -1,10 +1,5 @@
 (ns pdfboxing.form
-  (:require [pdfboxing.common :as common])
-  (:import
-   [org.apache.pdfbox.pdmodel PDDocumentCatalog]
-   [org.apache.pdfbox.pdmodel.common COSObjectable]
-   [org.apache.pdfbox.pdmodel.interactive.form PDAcroForm PDField PDSignatureField]
-   [java.io IOException]))
+  (:require [pdfboxing.common :as common]))
 
 (defn get-fields
   "get all the field names and their values from a PDF document"

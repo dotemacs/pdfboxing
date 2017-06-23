@@ -1,6 +1,6 @@
 (ns pdfboxing.text-test
-  (:require [clojure.test :refer :all]
-            [pdfboxing.text :refer :all]))
+  (:require [clojure.test :refer [deftest is]]
+            [pdfboxing.text :refer [extract]]))
 
 (def line-separator (System/getProperty "line.separator"))
 

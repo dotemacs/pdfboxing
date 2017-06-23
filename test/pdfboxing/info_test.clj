@@ -1,6 +1,6 @@
 (ns pdfboxing.info-test
   (:require [clojure.test :refer :all]
-            [pdfboxing.info :refer :all]))
+            [pdfboxing.info :refer [about-doc metadata-value metadata-values page-number]]))
 
 (deftest document-info
   (testing "page count"
