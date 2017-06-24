@@ -50,3 +50,10 @@
   org.apache.pdfbox.pdmodel.PDDocument
   (obtain-document [source]
     source))
+
+(defn get-form
+  "Obtain AcroForm from a open `doc`, opened with obtain-document"
+  [doc]
+  (-> doc
+      .getDocumentCatalog
+      .getAcroForm))
