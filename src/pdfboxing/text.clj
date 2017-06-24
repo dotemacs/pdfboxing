@@ -6,5 +6,5 @@
   "get text from a PDF document"
   [pdfdoc]
   (with-open [doc (common/obtain-document pdfdoc)]
-    (let [stripper (new PDFTextStripper)]
-      (.getText stripper doc))))
+    (-> (PDFTextStripper.)
+        (.getText doc))))
