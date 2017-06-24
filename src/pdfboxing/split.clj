@@ -41,7 +41,7 @@
     (.mergeDocuments merger)))
 
 (defn split-pdf
-  "split pdf into pages"
+  "Split pdf into pages"
   [& {:keys [input start end split]}]
   {:pre [(arg-check input start end split)]}
   (with-open [doc (common/obtain-document input)]
@@ -52,7 +52,7 @@
       (into [] (.split splitter doc)))))
 
 (defn split-pdf-at
-  "splits a pdf into two documents and writes them to disk"
+  "Splits a pdf into two documents and writes them to disk"
   [& {:keys [input split]}]
   (let [base-name (first (clojure.string/split input #".pdf"))
         f-names (for [x (range 1 3)] (str base-name "-" x ".pdf"))
