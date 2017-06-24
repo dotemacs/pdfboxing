@@ -5,17 +5,17 @@
   "get all the field names and their values from a PDF document"
   [pdfdoc]
   (with-open [doc (common/obtain-document pdfdoc)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)
-          fields (.getFields form)]
-      (into {} (map #(hash-map (.getPartialName %) (str (.getValue %))) fields)))))
+    (->> doc
+         common/get-form
+         .getFields
+         (map #(hash-map (.getPartialName %) (str (.getValue %))))
+         (into {}))))
 
 (defn set-fields
   "fill in the fields with the values provided"
   [input output new-fields]
   (with-open [doc (common/obtain-document input)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)]
+    (let [form (common/get-form doc)]
       (try
         (do
           (doseq [field new-fields]
@@ -30,8 +30,7 @@
   them"
   [input output fields-map]
   (with-open [doc (common/obtain-document input)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)]
+    (let [form (common/get-form doc)]
       (doseq [field fields-map]
         (.setPartialName
          (.getField form (str (first field)))
