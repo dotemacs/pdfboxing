@@ -105,6 +105,16 @@ on which the line should be drawn
                               :y1 160})
 ```
 
+### Convert a PDF document to very simple HTML
+
+Supply a PDF document's name, simple HTML is created in the root folder
+
+```clojure
+(require '[pdfboxing.tools :as tools])
+(tools/pdf-to-html "myFile.pdf")
+```
+
+
 ## Compatibility with Pdfbox PDDocuments
 The following functions referenced above have direct compatibility with Pdfbox's internal PDDocument type:
 - `text/extract`
