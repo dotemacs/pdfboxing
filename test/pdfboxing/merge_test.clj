@@ -1,8 +1,8 @@
 (ns pdfboxing.merge-test
-  (:require [clojure.test :refer :all]
-            [clojure.java.io :as io]
-            [pdfboxing.merge :refer :all]
-            [pdfboxing.common :as common]))
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [deftest is]]
+            [pdfboxing.common :as common]
+            [pdfboxing.merge :refer [arg-check merge-pdfs]]))
 
 (deftest input-output-argument-check
   (is (thrown? IllegalArgumentException (arg-check)))

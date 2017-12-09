@@ -1,9 +1,8 @@
 (ns pdfboxing.common-test
-  (:require [clojure.test :refer :all]
-            [clojure.java.io :as io]
-            [pdfboxing.common :refer :all])
-  (:import [org.apache.pdfbox.pdmodel PDDocument]))
-
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [deftest is testing]]
+            [pdfboxing.common :refer [is-pdf? obtain-document]])
+  (:import org.apache.pdfbox.pdmodel.PDDocument))
 
 (deftest pdf-existance-check
   (testing "If document supplied is a PDF"

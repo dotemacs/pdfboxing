@@ -106,7 +106,7 @@ on which the line should be drawn
                               :y1 160})
 ```
 
-## Compatibility with PDFBox PDDocuments
+## Compatibility with PDFBox's PDDocuments
 
 The following functions referenced above have direct compatibility
 with PDFBox's internal PDDocument type:

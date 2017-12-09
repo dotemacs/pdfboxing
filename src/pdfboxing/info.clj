@@ -1,8 +1,7 @@
 (ns pdfboxing.info
   (:require [clojure.string :as string]
             [pdfboxing.common :as common])
-  (:import [clojure.lang Reflector]
-           [org.apache.pdfbox.pdmodel PDDocumentCatalog PDDocumentInformation]))
+  (:import clojure.lang.Reflector))
 
 (defn page-number
   "return number of pages of a PDF document"

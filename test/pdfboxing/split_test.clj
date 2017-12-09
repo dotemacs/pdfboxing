@@ -1,7 +1,5 @@
 (ns pdfboxing.split-test
-  (:require [pdfboxing.split :refer :all]
-            [clojure.test :refer :all]
-            [pdfboxing.common :as common]
+  (:require [clojure.test :refer [deftest is]]
             [pdfboxing.split :as split]))
 
 (deftest pdf-input-arg-check
@@ -33,4 +31,3 @@
                (finally
                  (when (instance? org.apache.pdfbox.pdmodel.PDDocument doc)
                    (.close doc))))))))
-

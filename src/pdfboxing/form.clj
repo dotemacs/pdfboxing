@@ -1,30 +1,26 @@
 (ns pdfboxing.form
-  (:require [pdfboxing.common :as common])
-  (:import
-   [org.apache.pdfbox.pdmodel PDDocumentCatalog]
-   [org.apache.pdfbox.pdmodel.common COSObjectable]
-   [org.apache.pdfbox.pdmodel.interactive.form PDAcroForm PDField PDSignatureField]
-   [java.io IOException]))
+  (:require [pdfboxing.common :as common]))
 
 (defn get-fields
   "get all the field names and their values from a PDF document"
   [pdfdoc]
   (with-open [doc (common/obtain-document pdfdoc)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)
-          fields (.getFields form)]
-      (into {} (map #(hash-map (.getPartialName %) (str (.getValue %))) fields)))))
+    (->> doc
+         common/get-form
+         .getFields
+         (map #(hash-map (.getPartialName %) (str (.getValue %))))
+         (into {}))))
 
 (defn set-fields
   "fill in the fields with the values provided"
   [input output new-fields]
   (with-open [doc (common/obtain-document input)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)]
+    (let [form (common/get-form doc)]
       (try
         (do
           (doseq [field new-fields]
-            (.setValue (.getField form (name (key field))) (val field)))
+            (-> (.getField form (name (key field)))
+                (.setValue (val field))))
           (.save doc output))
         (catch NullPointerException e
           (str "Error: non existent field provided"))))))
@@ -35,10 +31,8 @@
   them"
   [input output fields-map]
   (with-open [doc (common/obtain-document input)]
-    (let [catalog (.getDocumentCatalog doc)
-          form (.getAcroForm catalog)]
+    (let [form (common/get-form doc)]
       (doseq [field fields-map]
-        (.setPartialName
-         (.getField form (str (first field)))
-         (str (last field))))
+        (-> (.getField form (str (first field)))
+            (.setPartialName (str (last field)))))
       (.save doc output))))

@@ -1,7 +1,7 @@
 (ns pdfboxing.form-test
-  (:require [clojure.test :refer :all]
-            [clojure.java.io :as io]
-            [pdfboxing.form :refer :all]))
+  (:require [clojure.java.io :as io]
+            [clojure.test :refer [deftest is testing]]
+            [pdfboxing.form :refer [get-fields rename-fields set-fields]]))
 
 (defn clean-up
   "clean up the file after testing"
