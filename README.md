@@ -5,7 +5,8 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 * [!["Clojar version"](https://img.shields.io/clojars/v/pdfboxing.svg?style=flat-square)](https://clojars.org/pdfboxing)
 * [!["Continuous Integration status"](https://img.shields.io/travis/dotemacs/pdfboxing.svg?style=flat-square)](http://travis-ci.org/dotemacs/pdfboxing)
 * [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/bsd-license)
-* [![Dependency Status](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5520e2a9971f7847ca0004a1)
+* [![Dependencies Status](https://versions.deps.co/dotemacs/pdfboxing/status.svg)](https://versions.deps.co/dotemacs/pdfboxing)
+* [![Downloads](https://versions.deps.co/dotemacs/pdfboxing/downloads.svg)](https://versions.deps.co/dotemacs/pdfboxing)
 
 ## Usage
 
@@ -105,8 +106,11 @@ on which the line should be drawn
                               :y1 160})
 ```
 
-## Compatibility with Pdfbox PDDocuments
-The following functions referenced above have direct compatibility with Pdfbox's internal PDDocument type:
+## Compatibility with PDFBox PDDocuments
+
+The following functions referenced above have direct compatibility
+with PDFBox's internal PDDocument type:
+
 - `text/extract`
 - `pdf/split-pdf`
 - `form/get-fields`
@@ -115,12 +119,15 @@ The following functions referenced above have direct compatibility with Pdfbox's
 - `info/page-number`
 - `draw/draw-line`
 
-This allows you to substitute each filepath (of each function's input) referenced above with a PDDocument type.  This is helpful for example in the case that you were to want to split a PDF up by pages and then extract the text from *only* the 3rd page:
+This allows you to substitute each filepath (of each function's input)
+referenced above with a PDDocument type.  This is helpful for example
+in the case that you were to want to split a PDF up by pages and then
+extract the text from *only* the 3rd page:
+
 ```clojure
 (require '[pdfboxing.text :as text])
 (require '[pdfboxing.split :as split])
-(text/extract
-  (nth 
-    (split/split-pdf :input "test/pdfs/multi-page.pdf")
-    2))
+(-> (split/split-pdf :input "test/pdfs/multi-page.pdf")
+    (nth 2)
+    text/extract)
 ```
