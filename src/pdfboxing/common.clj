@@ -1,7 +1,6 @@
 (ns pdfboxing.common
   (:require [clojure.java.io :as io])
   (:import java.io.File
-           javax.activation.FileDataSource
            org.apache.pdfbox.pdmodel.PDDocument
            org.apache.pdfbox.preflight.parser.PreflightParser))
 
@@ -10,8 +9,7 @@
   Returns nil if pdf-file-or-path could not be loaded as a PDF."
   [pdf-file-or-path]
   (let [^File pdf-file (io/as-file pdf-file-or-path)
-        data-source (FileDataSource. pdf-file)
-        parser (PreflightParser. data-source)]
+        parser (PreflightParser. pdf-file)]
     (try
       (.parse parser)
       (.getPreflightDocument parser)
