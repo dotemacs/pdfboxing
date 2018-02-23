@@ -1,20 +1,20 @@
 (ns pdfboxing.common
   (:require [clojure.java.io :as io])
   (:import java.io.File
-           javax.activation.FileDataSource
            org.apache.pdfbox.pdmodel.PDDocument
-           org.apache.pdfbox.preflight.parser.PreflightParser))
+           org.apache.pdfbox.io.RandomAccessFile
+           org.apache.pdfbox.pdfparser.PDFParser))
 
 (defn try-get-as-pdf
   "Try and get the pdf-file-or-path as a PDF.
   Returns nil if pdf-file-or-path could not be loaded as a PDF."
   [pdf-file-or-path]
   (let [^File pdf-file (io/as-file pdf-file-or-path)
-        data-source (FileDataSource. pdf-file)
-        parser (PreflightParser. data-source)]
+        random-access-file (RandomAccessFile. pdf-file "r")
+        parser (PDFParser. random-access-file)]
     (try
       (.parse parser)
-      (.getPreflightDocument parser)
+      (.getPDDocument parser)
       (catch Exception _))))
 
 (defn is-pdf?

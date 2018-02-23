@@ -51,7 +51,7 @@ To list fields and values:
 
 ```clojure
 (require '[pdfboxing.form :as form])
-(form/get-fields "test/pdfs/interactiveform.pdf"))
+(form/get-fields "test/pdfs/interactiveform.pdf")
 {"Emergency_Phone" "", "ZIP" "", "COLLEGE NO DEGREE" "", ...}
 ```
 ### Fill in PDF forms
