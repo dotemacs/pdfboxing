@@ -21,13 +21,12 @@
   (with-open [doc (common/obtain-document input)]
     (let [catalog (.getDocumentCatalog doc)
           form (.getAcroForm catalog)]
-      (try
-        (do
           (doseq [field new-fields]
-            (.setValue (.getField form (name (key field))) (val field)))
-          (.save doc output))
-        (catch NullPointerException e
-          (str "Error: non existent field provided"))))))
+            (try
+              (.setValue (.getField form (name (key field))) (val field))
+              (catch NullPointerException e
+                (str "Error: field " (key field) " doesn't exist")))
+          (.save doc output)))))
 
 (defn rename-fields
   "take an input PDF, a new file to be created and a map with keys as
