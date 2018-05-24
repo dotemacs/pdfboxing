@@ -10,13 +10,13 @@
     (io/delete-file file)))
 
 (deftest document-fields-and-value
-  (def document-fields-with-values {"last_name" "",
-                                    "first_name" "",
-                                    "date" "",
-                                    "checkbox1" "",
-                                    "checkbox2" "",
-                                    "checkbox3" "",
-                                    "checkbox4" "",
+  (def document-fields-with-values {"last_name" ""
+                                    "first_name" ""
+                                    "date" ""
+                                    "checkbox1" ""
+                                    "checkbox2" ""
+                                    "checkbox3" ""
+                                    "checkbox4" ""
                                     "checkbox5" ""})
   (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
 
@@ -25,13 +25,13 @@
     (is (thrown? java.io.IOException
                  (set-fields "test/pdfs/old-interactiveform.pdf"
                              "test/pdfs/filled-in.pdf"
-                             {"Name_Last" "Last",
-                              "Name_First" "First",
+                             {"Name_Last" "Last"
+                              "Name_First" "First"
                               "Name_Middle" "Middle"}))))
 
   (testing "Non existent field filling"
-    (is (= "Error: non existent field provided"
-           (set-fields "test/pdfs/fillable.pdf" "test/pdfs/test.pdf" {"non-existent" "fail"}))))
+    (is (thrown? IllegalArgumentException
+                 (set-fields "test/pdfs/fillable.pdf" "test/pdfs/test.pdf" {"non-existent" "fail"}))))
 
   (testing "form filling valid fields"
     (is (nil? (set-fields "test/pdfs/interactiveform.pdf" "test/pdfs/test.pdf" {"first_name" "My first name"}))))

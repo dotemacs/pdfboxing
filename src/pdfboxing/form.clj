@@ -16,14 +16,13 @@
   [input output new-fields]
   (with-open [doc (common/obtain-document input)]
     (let [form (common/get-form doc)]
-      (try
-        (do
-          (doseq [field new-fields]
-            (-> (.getField form (name (key field)))
-                (.setValue (val field))))
-          (.save doc output))
-        (catch NullPointerException e
-          (str "Error: non existent field provided"))))))
+      (doseq [field new-fields]
+        (try
+          (-> (.getField form (name (key field)))
+              (.setValue (val field)))
+          (catch NullPointerException e
+            (throw (IllegalArgumentException. (str "Non-existing field " (key field) " provided")))))
+        (.save doc output)))))
 
 (defn rename-fields
   "take an input PDF, a new file to be created and a map with keys as
