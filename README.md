@@ -27,7 +27,8 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 ### Merge multiple images into single PDF
 
 You can use either `merge-images-from-path` for providing images in form of vector of string paths or
-`merge-images-from-byte-array` to provide them as a vector of byte arrays.
+`merge-images-from-byte-array` to provide them as a vector of byte arrays. Each image will be inserted into its own
+page.
 
 ```clojure
 (require '[pdfboxing.merge :as pdf])
