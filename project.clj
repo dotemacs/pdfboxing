@@ -4,4 +4,4 @@
   :license {:name "BSD"
             :url "http://www.opensource.org/licenses/bsd-license"}
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.apache.pdfbox/pdfbox "2.0.11"]])
+                 [org.apache.pdfbox/pdfbox "2.0.12"]])

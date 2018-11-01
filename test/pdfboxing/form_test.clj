@@ -13,11 +13,11 @@
   (def document-fields-with-values {"last_name" ""
                                     "first_name" ""
                                     "date" ""
-                                    "checkbox1" ""
-                                    "checkbox2" ""
-                                    "checkbox3" ""
-                                    "checkbox4" ""
-                                    "checkbox5" ""})
+                                    "checkbox1" "Off"
+                                    "checkbox2" "Off"
+                                    "checkbox3" "Off"
+                                    "checkbox4" "Off"
+                                    "checkbox5" "Off"})
   (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
 
 (deftest populating-fields
