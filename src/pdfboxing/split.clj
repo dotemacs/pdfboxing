@@ -45,12 +45,12 @@
   "Split pdf into pages"
   [& {:keys [input start end split]}]
   {:pre [(arg-check input start end split)]}
-  (with-open [doc (common/obtain-document input)]
-    (let [splitter (Splitter.)]
-      (when start (.setStartPage splitter start))
-      (when end (.setEndPage splitter end))
-      (when split (.setSplitAtPage splitter split))
-      (into [] (.split splitter doc)))))
+  (let [doc (common/obtain-document input)
+        splitter (Splitter.)]
+    (when start (.setStartPage splitter start))
+    (when end (.setEndPage splitter end))
+    (when split (.setSplitAtPage splitter split))
+    (into [] (.split splitter doc))))
 
 (defn split-pdf-at
   "Splits a pdf into two documents and writes them to disk"
