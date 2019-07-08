@@ -1,9 +1,9 @@
 language: clojure
-lein: 2.8.1
+lein: 2.9.1
 script: lein do clean, test
 jdk:
-  - openjdk6
-  - openjdk7
-  - oraclejdk7
-  - oraclejdk8
-  - oraclejdk9
+  - openjdk8
+  - openjdk9
+  - openjdk10
+  - openjdk11
+  - oraclejdk11
