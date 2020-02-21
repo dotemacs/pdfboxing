@@ -1,5 +1,24 @@
 (ns pdfboxing.form
-  (:require [pdfboxing.common :as common]))
+  (:require [pdfboxing.common :as common])
+  (:import (org.apache.pdfbox.pdmodel.interactive.form PDNonTerminalField)))
+
+
+(defn extract-fields
+  "From a given `field`, extract its name and value or if it has
+  children, all the children."
+  [field]
+  (if (= PDNonTerminalField (type field))
+    (hash-map (.getFullyQualifiedName field)
+              (->> field
+                   .getChildren
+                   (map (fn [child]
+                          (if (= PDNonTerminalField (type child))
+                            (map #(extract-fields %) child)
+                            (hash-map (.getFullyQualifiedName child)
+                                      (.getValue child)))))
+                   (into {})))
+    (hash-map (.getFullyQualifiedName field) (str (.getValue field)))))
+
 
 (defn get-fields
   "get all the field names and their values from a PDF document"
@@ -8,7 +27,7 @@
     (->> doc
          common/get-form
          .getFields
-         (map #(hash-map (.getPartialName %) (str (.getValue %))))
+         (map #(extract-fields %))
          (into {}))))
 
 (defn set-fields
