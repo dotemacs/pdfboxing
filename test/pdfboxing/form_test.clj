@@ -1,7 +1,8 @@
 (ns pdfboxing.form-test
   (:require [clojure.java.io :as io]
             [clojure.test :refer [deftest is testing]]
-            [pdfboxing.form :refer [get-fields rename-fields set-fields]]))
+            [pdfboxing.form :refer [get-fields rename-fields set-fields]]
+            [pdfboxing.common :as common]))
 
 (defn clean-up
   "clean up the file after testing"
@@ -19,6 +20,24 @@
                                     "checkbox4" "Off"
                                     "checkbox5" "Off"})
   (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
+
+
+(deftest nested-fields
+  (testing "Check that we can fill out nested forms"
+    (set-fields "test/pdfs/claim.pdf"
+                "test/pdfs/filled-in.pdf"
+                [["25" 0 "Amount"]])
+    (is (= "25" (->>
+                 "test/pdfs/filled-in.pdf"
+                 common/obtain-document
+                 common/get-form
+                 .getFields
+                 (filter #(= (.getPartialName %1) "Amount"))
+                 first
+                 .getChildren
+                 first
+                 .getValue)))
+    (clean-up "test/pdfs/filled-in.pdf")))
 
 (deftest populating-fields
   (testing "Error handling for non simple fonts"
