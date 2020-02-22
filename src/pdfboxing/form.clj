@@ -44,9 +44,34 @@
         (.save doc output)))))
 
 (defn rename-fields
-  "take an input PDF, a new file to be created and a map with keys as
-  the current form field names and values as the new names, and rename
-  them"
+  "Take an `input` PDF, a string `output` as the new file to be created
+  and a map `fields-map` with keys as the current form field names and
+  values as the new names, and rename them.
+
+  e.g. (rename-fields \"input.pdf\" \"output.pdf\" {\"foo\" \"bar\"})
+  will create a new PDF document output.pdf with a field foo renamed
+  to bar.
+
+  If the field to be renamed is nested, only partial name of the field
+  is renamed. For example in this `fields-map`:
+
+  {\"foo\" {\"foo.0\" \"bar\"}}
+
+  the result will be that foo.0 is now renamed to foo.bar.
+
+  But if you were to rename foo into bar, where foo is the top level
+  field name, then all the children of the foo would also be
+  renamed. For this `fields-map`:
+
+  {\"foo\" \"bar\"}
+
+  and if the foo field looked like:
+
+  {\"foo\" {\"foo.0\" \"x\" \"foo.1\" \"y\"}}
+
+  the results would be:
+
+  {\"bar\" {\"bar.0\" \"x\" \"bar.1\" \"y\"}}."
   [input output fields-map]
   (with-open [doc (common/obtain-document input)]
     (let [form (common/get-form doc)]
