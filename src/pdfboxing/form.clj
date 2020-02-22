@@ -31,7 +31,17 @@
          (into {}))))
 
 (defn set-fields
-  "fill in the fields with the values provided"
+  "Take `input` PDF, a map `new-fields` which will set the values of the
+  fields and create `output` PDF.
+
+  For example:
+
+  {\"foo\" \"bar\"}
+
+  will set the value of \"bar\" to the field \"foo\".
+
+  If the field \"foo\" has children, then all its children will get
+  the value of \"bar\"."
   [input output new-fields]
   (with-open [doc (common/obtain-document input)]
     (let [form (common/get-form doc)]
