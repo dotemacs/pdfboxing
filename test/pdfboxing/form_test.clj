@@ -20,6 +20,17 @@
                                     "checkbox5" "Off"})
   (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
 
+
+(deftest nested-fields
+  (testing "Check that we can fill out nested forms"
+    (let [desired-map {"Amount.0" "25" "Amount.1" "one" "Amount.2" "two"}]
+      (set-fields "test/pdfs/claim.pdf" "test/pdfs/filled-in.pdf" desired-map)
+      (is (= desired-map
+             (-> (get-fields "test/pdfs/filled-in.pdf")
+                 (get "Amount")))))
+    (clean-up "test/pdfs/filled-in.pdf")))
+
+
 (deftest populating-fields
   (testing "Error handling for non simple fonts"
     (is (thrown? java.io.IOException
