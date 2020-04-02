@@ -58,6 +58,25 @@ Splits into two PDFs, the first having 5 pages and second has rest
  (pdf/split-pdf-at :input "test/pdfs/multi-page.pdf" :split 5)
 ```
 
+### Export a PDF to an image
+```clojure
+ (require '[pdfboxing.image :as image])
+```
+Export a thumbnail of a PDF
+```clojure
+ (image/export-to-image :input "test/pdfs/multi-page.pdf")
+```
+
+Export a thumbnail with custom DPI (default is 300)
+```clojure
+ (image/export-to-image :input "test/pdfs/multi-page.pdf" :dpi 72)
+```
+
+Export a thumbnail of custom page index (defaults to first page)
+```clojure
+ (image/export-to-image :input "test/pdfs/multi-page.pdf" :page-idx 1)
+```
+
 ### List form fields of a PDF
 
 To list fields and values:

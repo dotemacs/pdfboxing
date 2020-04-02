@@ -2,19 +2,20 @@
   (:require [clojure.string :as s]
             [pdfboxing.common :as common]
             [pdfboxing.merge :as merge])
-  (:import (org.apache.pdfbox.multipdf PDFMergerUtility Splitter)))
+  (:import [org.apache.pdfbox.multipdf PDFMergerUtility Splitter]
+           [java.io File]))
 
 (defn check-if-integer
   [coll]
   (if (every? integer? coll)
     true
-    (merge/throw-exception ":start and :end may only be integers")))
+    (common/throw-exception ":start and :end may only be integers")))
 
 (defn arg-check [input start end split]
   (let [int-args [start end split]]
-    (if (string? input)
+    (if (or (string? input) (instance? File input))
       (merge/check-for-pdfs  [input])
-      (merge/throw-exception "input must be a string"))
+      (common/throw-exception "input must be a string"))
     (check-if-integer (filter (complement nil?) int-args))))
 
 (defn pddocument->byte-array
@@ -53,7 +54,8 @@
       (into [] (.split splitter doc)))))
 
 (defn split-pdf-at
-  "Splits a pdf into two documents and writes them to disk"
+  "Splits a pdf into two documents and writes them to disk
+  If the split key is not provided then it will split the document approx. in half."
   [& {:keys [input split]}]
   (let [base-name (first (s/split input #".pdf"))
         f-names (for [x (range 1 3)] (str base-name "-" x ".pdf"))

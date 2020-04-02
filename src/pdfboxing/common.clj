@@ -5,6 +5,10 @@
            (org.apache.pdfbox.io RandomAccessFile)
            (org.apache.pdfbox.pdfparser PDFParser)))
 
+(defn throw-exception
+  [message]
+  (throw (IllegalArgumentException. message)))
+
 (defn try-get-as-pdf
   "Try and get the pdf-file-or-path as a PDF.
   Returns nil if pdf-file-or-path could not be loaded as a PDF."

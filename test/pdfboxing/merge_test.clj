@@ -1,8 +1,9 @@
 (ns pdfboxing.merge-test
   (:require [clojure.java.io :as io]
-            [clojure.test :refer [deftest is]]
+            [clojure.test :refer [deftest is testing]]
             [pdfboxing.common :as common]
-            [pdfboxing.merge :refer [arg-check merge-pdfs]]))
+            [pdfboxing.merge :refer [arg-check merge-pdfs]])
+  (:import [java.io File]))
 
 (deftest input-output-argument-check
   (is (thrown? IllegalArgumentException (arg-check)))
@@ -21,7 +22,14 @@
                                     :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"])
         merged-pdf-file (.exists (io/as-file file))]
     (is (true? merged-pdf-file))
-    (is (true? (common/is-pdf? file)))))
+    (is (true? (common/is-pdf? file)))
+
+    (testing "Accepts both file paths and File instances as an input"
+      (let [merging-outcome (merge-pdfs :output file
+                                        :input [(File. "test/pdfs/clojure-1.pdf") "test/pdfs/clojure-2.pdf"])
+            merged-pdf-file (.exists (io/as-file file))]
+        (is (true? merged-pdf-file))
+        (is (true? (common/is-pdf? file)))))))
 
 ;; clean up
 (defn clean-up [file]
