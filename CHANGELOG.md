@@ -3,6 +3,7 @@
 ## WIP
 
 ### Added
+- Form flattening
 - Upgraded `PDFBox` to `2.0.21`
 - Upgraded `Clojure` to `1.10.1`
 

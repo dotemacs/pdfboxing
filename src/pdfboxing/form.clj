@@ -1,4 +1,5 @@
 (ns pdfboxing.form
+  (:refer-clojure :exclude [flatten])
   (:require [pdfboxing.common :as common])
   (:import (org.apache.pdfbox.pdmodel.interactive.form PDNonTerminalField)))
 
@@ -91,3 +92,12 @@
         (-> (.getField form (str (first field)))
             (.setPartialName (str (last field)))))
       (.save doc output))))
+
+
+(defn flatten
+  "Flatten all the fields of a given `input` PDF document
+  and save it as `output` PDF document."
+  [input output]
+  (with-open [doc (common/obtain-document input)]
+    (-> doc common/get-form .flatten)
+    (.save doc output)))
