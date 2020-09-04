@@ -6,7 +6,7 @@
 (defn clean-up
   "clean up the file after testing"
   [file]
-  (if (.exists (io/as-file file))
+  (when (.exists (io/as-file file))
     (io/delete-file file)))
 
 (deftest document-fields-and-value
