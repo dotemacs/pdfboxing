@@ -1,5 +1,6 @@
 (ns pdfboxing.split
-  (:require [pdfboxing.common :as common]
+  (:require [clojure.string :as s]
+            [pdfboxing.common :as common]
             [pdfboxing.merge :as merge])
   (:import [org.apache.pdfbox.multipdf PDFMergerUtility Splitter]))
 
@@ -54,7 +55,7 @@
 (defn split-pdf-at
   "Splits a pdf into two documents and writes them to disk"
   [& {:keys [input split]}]
-  (let [base-name (first (clojure.string/split input #".pdf"))
+  (let [base-name (first (s/split input #".pdf"))
         f-names (for [x (range 1 3)] (str base-name "-" x ".pdf"))
         pages (split-pdf :input input)
         doc-1 (take (or split (/ (count pages) 2)) pages)
