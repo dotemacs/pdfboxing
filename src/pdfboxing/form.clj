@@ -50,7 +50,9 @@
           (-> (.getField form (name (key field)))
               (.setValue (val field)))
           (catch NullPointerException e
-            (throw (IllegalArgumentException. (str "Non-existing field " (key field) " provided")))))
+            (throw (IllegalArgumentException.
+                    (str "Non-existing field " (key field)
+                         " provided, exception: " e)))))
         (.save doc output)))))
 
 (defn rename-fields

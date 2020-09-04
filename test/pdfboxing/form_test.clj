@@ -6,19 +6,19 @@
 (defn clean-up
   "clean up the file after testing"
   [file]
-  (if (.exists (io/as-file file))
+  (when (.exists (io/as-file file))
     (io/delete-file file)))
 
 (deftest document-fields-and-value
-  (def document-fields-with-values {"last_name" ""
-                                    "first_name" ""
-                                    "date" ""
-                                    "checkbox1" "Off"
-                                    "checkbox2" "Off"
-                                    "checkbox3" "Off"
-                                    "checkbox4" "Off"
-                                    "checkbox5" "Off"})
-  (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf"))))
+  (let [document-fields-with-values {"last_name" ""
+                                     "first_name" ""
+                                     "date" ""
+                                     "checkbox1" "Off"
+                                     "checkbox2" "Off"
+                                     "checkbox3" "Off"
+                                     "checkbox4" "Off"
+                                     "checkbox5" "Off"}]
+    (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf")))))
 
 
 (deftest nested-fields

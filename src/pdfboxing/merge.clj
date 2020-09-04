@@ -10,7 +10,7 @@
 (defn check-if-present
   "Check if the input & output file names where supplied"
   [input output]
-  (if (some true? (map empty? [input output]))
+  (when (some true? (map empty? [input output]))
     (throw-exception "argument can't be empty")))
 
 (defn check-for-pdfs
