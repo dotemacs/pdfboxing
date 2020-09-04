@@ -3,5 +3,5 @@
   :url "https://github.com/dotemacs/pdfboxing"
   :license {:name "BSD"
             :url "http://www.opensource.org/licenses/bsd-license"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.apache.pdfbox/pdfbox "2.0.19"]])
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.apache.pdfbox/pdfbox "2.0.21"]])
