@@ -10,7 +10,7 @@
 (defn get-page
   "Get a particular page from a catalog"
   [catalog page-number]
-  (.get (.getAllPages catalog) page-number))
+  (.get (.getPages catalog) page-number))
 
 (defn get-content-stream
   "Take the read in PDF document and a page number and return content
@@ -58,4 +58,4 @@
       (use-rgb-colour content-stream)
       (set-line-width content-stream)
       (draw-line-at-coordinates content-stream coordinates))
-      (.save document output-pdf)))
+    (.save document output-pdf)))
