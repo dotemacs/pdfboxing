@@ -36,7 +36,7 @@ Splits the PDF into single pages as a list of PDDocument
 ```clojure
  (pdf/split-pdf :input "test/pdfs/multi-page.pdf")
 ```
-Splits the PDF in half and writes them to disk as clojure-1.pdf and clojure-2.pdf
+Splits the PDF in half and writes them to disk as multi-page-1.pdf and multi-page-2.pdf
 ```clojure
  (pdf/split-pdf-at :input "test/pdfs/multi-page.pdf")
 ```
