@@ -2,7 +2,7 @@
   (:require [clojure.string :as s]
             [pdfboxing.common :as common]
             [pdfboxing.merge :as merge])
-  (:import [org.apache.pdfbox.multipdf PDFMergerUtility Splitter]))
+  (:import (org.apache.pdfbox.multipdf PDFMergerUtility Splitter)))
 
 (defn check-if-integer
   [coll]
