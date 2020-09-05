@@ -1,6 +1,6 @@
 (ns pdfboxing.merge
   (:require [pdfboxing.common :as common])
-  (:import [java.io File FileInputStream]
+  (:import (java.io File FileInputStream)
            org.apache.pdfbox.multipdf.PDFMergerUtility))
 
 (defn throw-exception
