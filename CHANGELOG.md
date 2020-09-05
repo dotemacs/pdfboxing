@@ -1,5 +1,12 @@
 # Changelog
 
+## WIP
+
+### Changed
+- Using lists for :imports
+- Updated documentation of `split-pdf-at` in the README
+
+
 ## 0.1.15.1-SNAPSHOT
 
 ### Added
