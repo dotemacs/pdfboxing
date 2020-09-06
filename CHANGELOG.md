@@ -2,6 +2,9 @@
 
 ## WIP
 
+### Added
+- Added the ability to merge multiple images into a single PDF
+
 ### Changed
 - Using lists for :imports
 - Updated documentation of `split-pdf-at` in the README
