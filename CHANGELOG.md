@@ -8,7 +8,7 @@
 ### Changed
 - Using lists for :imports
 - Updated documentation of `split-pdf-at` in the README
-
+- Imports in `pdfboxing.common` comply with clj-kondo linting
 
 ## 0.1.15.1-SNAPSHOT
 
