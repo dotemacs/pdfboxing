@@ -1,9 +1,9 @@
 (ns pdfboxing.common
   (:require [clojure.java.io :as io])
-  (:import java.io.File
-           org.apache.pdfbox.pdmodel.PDDocument
-           org.apache.pdfbox.io.RandomAccessFile
-           org.apache.pdfbox.pdfparser.PDFParser))
+  (:import (java.io File)
+           (org.apache.pdfbox.pdmodel PDDocument)
+           (org.apache.pdfbox.io RandomAccessFile)
+           (org.apache.pdfbox.pdfparser PDFParser)))
 
 (defn try-get-as-pdf
   "Try and get the pdf-file-or-path as a PDF.
@@ -39,15 +39,15 @@
   (obtain-document [source]))
 
 (extend-protocol PDFDocument
-  java.lang.String
+  String
   (obtain-document [source]
     (load-pdf source))
 
-  java.io.File
+  File
   (obtain-document [source]
     (load-pdf source))
 
-  org.apache.pdfbox.pdmodel.PDDocument
+  PDDocument
   (obtain-document [source]
     source))
 
