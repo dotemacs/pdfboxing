@@ -39,6 +39,10 @@
   (obtain-document [source]))
 
 (extend-protocol PDFDocument
+  (class (byte-array 0))
+  (obtain-document [source]
+    (PDDocument/load source))
+
   String
   (obtain-document [source]
     (load-pdf source))
