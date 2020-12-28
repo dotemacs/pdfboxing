@@ -1,6 +1,20 @@
-name: Tests
+name: Continuous Integration
 on: [push, pull_request]
 jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the branch
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref }}
+      - name: Run clj-kondo
+        uses: DeLaGuardo/clojure-lint-action@master
+        with:
+          clj-kondo-args: --lint src
+          check-name: clj-kondo report
+          github_token: ${{ secrets.GITHUB_TOKEN }}
   java8:
     name: Test with Java 8
     runs-on: ubuntu-latest
