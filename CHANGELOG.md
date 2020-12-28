@@ -7,6 +7,7 @@
 - Added the ability to load PDFs from byte arrays
 
 ### Changed
+- Moved off TravisCI and onto GitHub Actions
 - Using lists for :imports
 - Updated documentation of `split-pdf-at` in the README
 - Imports in `pdfboxing.common` comply with clj-kondo linting
