@@ -1,8 +1,8 @@
-name: Continuous Integration
+name: Linting
 on: [push, pull_request]
 jobs:
-  ci:
-    name: Linting and tests
+  lint:
+    name: Linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the branch
@@ -15,12 +15,3 @@ jobs:
           clj-kondo-args: --lint src
           check-name: clj-kondo report
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-      - name: Install leiningen
-        uses: DeLaGuardo/setup-clojure@master
-        with:
-          lein: 2.9.4
-      - run: lein test
