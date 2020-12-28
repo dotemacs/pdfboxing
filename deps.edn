@@ -1,0 +1,12 @@
+{:description "Clojure PDF manipulation library & wrapper for PDFBox"
+ :url "https://github.com/dotemacs/pdfboxing"
+ :paths ["src"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        org.apache.pdfbox/pdfbox {:mvn/version "2.0.21"}}
+ :license {:name "BSD"
+           :url "http://www.opensource.org/licenses/bsd-license"}
+ :aliases {:test {:extra-paths ["test"]}
+           :runner {:extra-deps {com.cognitect/test-runner
+                                 {:git/url "https://github.com/cognitect-labs/test-runner"
+                                  :sha "76568540e7f40268ad2b646110f237a60295fa3c"}}
+                    :main-opts ["-m" "cognitect.test-runner" "-d" "test"]}}}
