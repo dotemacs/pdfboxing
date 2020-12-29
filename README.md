@@ -2,7 +2,8 @@
 
 Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org/).
 
-* [!["clojure CLI"](https://img.shields.io/badge/dynamic/json?color=green&label=Clojure%20CLI&prefix=pdfboxing%2Fpdfboxing%20%7B%3Amvn%2Fversion%20%22&query=%24%5B0%5D.latest_version&suffix=%22%7D&url=https%3A%2F%2Fclojars.org%2Fapi%2Fgroups%2Fpdfboxing)](https://clojars.org/pdfboxing) or [!["Leiningen version"](https://img.shields.io/badge/dynamic/json?color=green&label=leiningen&prefix=%5Bpdfboxing%20%22&query=%24%5B0%5D.latest_version&suffix=%22%5D&url=https%3A%2F%2Fclojars.org%2Fapi%2Fgroups%2Fpdfboxing)](https://clojars.org/pdfboxing)
+* [!["clojure CLI"](https://img.shields.io/badge/dynamic/json?color=green&label=Clojure%20CLI&prefix=pdfboxing%2Fpdfboxing%20%7B%3Amvn%2Fversion%20%22&query=%24%5B0%5D.latest_version&suffix=%22%7D&url=https%3A%2F%2Fclojars.org%2Fapi%2Fgroups%2Fpdfboxing)](https://clojars.org/pdfboxing)
+* [!["Leiningen version"](https://img.shields.io/badge/dynamic/json?color=green&label=leiningen&prefix=%5Bpdfboxing%20%22&query=%24%5B0%5D.latest_version&suffix=%22%5D&url=https%3A%2F%2Fclojars.org%2Fapi%2Fgroups%2Fpdfboxing)](https://clojars.org/pdfboxing)
 * [!["Continuous Integration status"](https://img.shields.io/travis/dotemacs/pdfboxing.svg?style=flat-square)](http://travis-ci.org/dotemacs/pdfboxing)
 * [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/bsd-license)
 * [![Dependencies Status](https://versions.deps.co/dotemacs/pdfboxing/status.svg)](https://versions.deps.co/dotemacs/pdfboxing)
