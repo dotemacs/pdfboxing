@@ -1,7 +1,7 @@
 name: Scheduled dependency checker
 on:
   schedule:
-    - cron: "* 3,6,9,12 * * *"
+    - cron: "* * * * *"
 
 jobs:
   ci:
