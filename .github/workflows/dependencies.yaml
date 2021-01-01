@@ -1,0 +1,28 @@
+name: Scheduled dependency checker
+on:
+  schedule:
+    - cron: "* 3,6,9,12 * * *"
+
+jobs:
+  ci:
+    name: Scheduled dependency checker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+      - name: Checkout the branch
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref }}
+      - name: Install Clojure CLI
+        uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: '1.10.1.763'
+      - name: check for outdated dependencies
+        run: |
+          echo 'Scheduled outdated dependency check:' >> outdated.md
+          echo '```clojure' >> outdated.md
+          clojure -M:outdated >> outdated.md
+          echo '```' >> outdated.md
+          if [ $(grep -c ':mvn/version' outdated.md) -gt 0 ]; then exit 1; fi
