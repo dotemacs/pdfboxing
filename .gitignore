@@ -10,3 +10,4 @@ pom.xml.asc
 /bin/
 .classpath
 /.nrepl-port
+.cpcache/
