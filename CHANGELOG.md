@@ -3,9 +3,9 @@
 ## WIP
 
 ### Added
-- Added the ability to partially parse PDF content based on a vector of regions
 - Added the ability to merge multiple images into a single PDF
 - Added the ability to load PDFs from byte arrays
+- Added the ability to partially parse PDF content based on a vector of regions
 
 ### Changed
 - Using lists for :imports
