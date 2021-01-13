@@ -21,7 +21,7 @@
     (.getTextForRegion textstripper "region")))
 
 (defn extract-by-areas
-  "get text from a specified area of a PDF document"
+  "get text from specified areas of a PDF document"
   [pdfdoc areas]
   (with-open [doc (common/obtain-document pdfdoc)]
     (doall (map #(area-text doc %) areas))))
