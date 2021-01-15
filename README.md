@@ -25,6 +25,16 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 (pdf/merge-pdfs :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"] :output "foo.pdf")
 ```
 
+### Overlay one PDF over another
+
+```clojure
+(require '[pdfboxing.overlay :as pdf-overlay])
+(pdf-overlay/overlay-pdf
+  {:input-file-path "test/pdfs/clojure-1.pdf"
+   :overlay-file-path "test/pdfs/clojure-2.pdf"
+   :output-file-path "test/pdfs/foo.pdf"})
+```
+
 ### Merge multiple images into single PDF
 
 You can use either `merge-images-from-path` for providing images in
