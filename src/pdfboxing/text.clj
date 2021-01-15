@@ -11,9 +11,9 @@
     (-> (PDFTextStripper.)
         (.getText doc))))
 
-(defn- area-text [doc {:keys [x y w h page-number]}]
-  (let [page-number  (or page-number 0)
-        rectangle    (Rectangle. x y w h)
+(defn- area-text [doc {:keys [x y w h page-number]
+                       :or {x 0 y 0 w 0 h 0 page-number 0}}]
+  (let [rectangle    (Rectangle. x y w h)
         pdpage       (.getPage doc page-number)
         textstripper (doto (PDFTextStripperByArea.)
                        (.addRegion "region" rectangle)
