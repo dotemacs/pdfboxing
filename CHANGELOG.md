@@ -5,6 +5,7 @@
 ### Added
 - Added the ability to merge multiple images into a single PDF
 - Added the ability to load PDFs from byte arrays
+- Added the ability to overlay one PDF over another
 
 ### Changed
 - Using lists for :imports
