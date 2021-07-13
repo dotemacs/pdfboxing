@@ -53,8 +53,8 @@
           (catch NullPointerException e
             (throw (IllegalArgumentException.
                     (str "Non-existing field " (key field)
-                         " provided, exception: " e)))))
-        (.save doc output)))))
+                         " provided, exception: " e))))))
+      (.save doc output))))
 
 (defn rename-fields
   "Take an `input` PDF, a string `output` as the new file to be created
