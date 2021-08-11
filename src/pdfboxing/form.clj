@@ -12,11 +12,7 @@
     (hash-map (.getFullyQualifiedName field)
               (->> field
                    .getChildren
-                   (map (fn [child]
-                          (if (= PDNonTerminalField (type child))
-                            (map #(extract-fields %) child)
-                            (hash-map (.getFullyQualifiedName child)
-                                      (.getValue child)))))
+                   (mapcat extract-fields)
                    (into {})))
     (hash-map (.getFullyQualifiedName field) (str (.getValue field)))))
 
