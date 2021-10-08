@@ -21,6 +21,12 @@
                                      "checkbox5" "Off"}]
     (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf")))))
 
+(deftest nested-nonterminal-fields-and-values
+  (is (= {"Grandparent"
+          {"Grandparent.Parent"
+           {"Grandparent.Parent.SampleField" "Hello world!"}}}
+         (get-fields "test/pdfs/nested-nonterminal.pdf"))))
+
 (deftest nested-fields
   (testing "Check that we can fill out nested forms"
     (let [desired-map {"Amount.0" "25" "Amount.1" "one" "Amount.2" "two"}]
