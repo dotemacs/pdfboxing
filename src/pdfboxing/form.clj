@@ -12,11 +12,7 @@
     (hash-map (.getFullyQualifiedName field)
               (->> field
                    .getChildren
-                   (map (fn [child]
-                          (if (= PDNonTerminalField (type child))
-                            (map #(extract-fields %) child)
-                            (hash-map (.getFullyQualifiedName child)
-                                      (.getValue child)))))
+                   (mapcat extract-fields)
                    (into {})))
     (hash-map (.getFullyQualifiedName field) (str (.getValue field)))))
 
@@ -53,8 +49,8 @@
           (catch NullPointerException e
             (throw (IllegalArgumentException.
                     (str "Non-existing field " (key field)
-                         " provided, exception: " e)))))
-        (.save doc output)))))
+                         " provided, exception: " e))))))
+      (.save doc output))))
 
 (defn rename-fields
   "Take an `input` PDF, a string `output` as the new file to be created

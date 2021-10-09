@@ -5,12 +5,15 @@
 ### Added
 - Added the ability to merge multiple images into a single PDF
 - Added the ability to load PDFs from byte arrays
+- Added the ability to run tests automatically using GitHub actions [#64](https://github.com/dotemacs/pdfboxing/pull/64)
 - Added the ability to partially parse PDF content based on a vector of regions
 
 ### Changed
 - Using lists for :imports
 - Updated documentation of `split-pdf-at` in the README
 - Imports in `pdfboxing.common` comply with clj-kondo linting
+- Made `pdfboxing.form/set-fields` more efficient [#64](https://github.com/dotemacs/pdfboxing/pull/64)
+- Made `pdfboxing.form/get-fields` more robust by handling nested fields [#65](https://github.com/dotemacs/pdfboxing/pull/65)
 
 ## 0.1.15.1-SNAPSHOT
 

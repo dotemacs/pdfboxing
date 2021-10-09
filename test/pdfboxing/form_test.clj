@@ -1,7 +1,8 @@
 (ns pdfboxing.form-test
   (:require [clojure.java.io :as io]
             [clojure.test :refer [deftest is testing]]
-            [pdfboxing.form :refer [get-fields rename-fields set-fields]]))
+            [pdfboxing.form :refer [get-fields rename-fields set-fields]])
+  (:import (java.nio.file Files)))
 
 (defn clean-up
   "clean up the file after testing"
@@ -20,6 +21,11 @@
                                      "checkbox5" "Off"}]
     (is (= document-fields-with-values (get-fields "test/pdfs/interactiveform.pdf")))))
 
+(deftest nested-nonterminal-fields-and-values
+  (is (= {"Grandparent"
+          {"Grandparent.Parent"
+           {"Grandparent.Parent.SampleField" "Hello world!"}}}
+         (get-fields "test/pdfs/nested-nonterminal.pdf"))))
 
 (deftest nested-fields
   (testing "Check that we can fill out nested forms"
@@ -29,7 +35,6 @@
              (-> (get-fields "test/pdfs/filled-in.pdf")
                  (get "Amount")))))
     (clean-up "test/pdfs/filled-in.pdf")))
-
 
 (deftest populating-fields
   (testing "Error handling for non simple fonts"
@@ -46,6 +51,15 @@
 
   (testing "form filling valid fields"
     (is (nil? (set-fields "test/pdfs/interactiveform.pdf" "test/pdfs/test.pdf" {"first_name" "My first name"}))))
+
+  (testing "form filling using ByteArrayOutputStream"
+    (with-open [out (java.io.ByteArrayOutputStream.)]
+      (set-fields "test/pdfs/interactiveform.pdf" "test/pdfs/test.pdf" {"first_name" "My first name"
+                                                                        "last_name" "Last Name"})
+      (set-fields "test/pdfs/interactiveform.pdf" out {"first_name" "My first name"
+                                                       "last_name" "Last Name"})
+      (is (= (seq (Files/readAllBytes (.toPath (io/file "test/pdfs/test.pdf"))))
+             (seq (.toByteArray out))))))
   (clean-up "test/pdfs/test.pdf"))
 
 (deftest field-rename
