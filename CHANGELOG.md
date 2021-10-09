@@ -12,6 +12,7 @@
 - Updated documentation of `split-pdf-at` in the README
 - Imports in `pdfboxing.common` comply with clj-kondo linting
 - Made `pdfboxing.form/set-fields` more efficient [#64](https://github.com/dotemacs/pdfboxing/pull/64)
+- Made `pdfboxing.form/get-fields` more robust by handling nested fields [#65](https://github.com/dotemacs/pdfboxing/pull/65)
 
 ## 0.1.15.1-SNAPSHOT
 
