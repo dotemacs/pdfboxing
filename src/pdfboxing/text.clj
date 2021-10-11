@@ -24,4 +24,4 @@
   "get text from specified areas of a PDF document"
   [pdfdoc areas]
   (with-open [doc (common/obtain-document pdfdoc)]
-    (doall (map #(area-text doc %) areas))))
+    (reduce (fn [v area] (conj v (area-text doc area))) [] areas)))
