@@ -13,6 +13,7 @@
 - Imports in `pdfboxing.common` comply with clj-kondo linting
 - Made `pdfboxing.form/set-fields` more efficient [#64](https://github.com/dotemacs/pdfboxing/pull/64)
 - Made `pdfboxing.form/get-fields` more robust by handling nested fields [#65](https://github.com/dotemacs/pdfboxing/pull/65)
+- Made `pdfboxing.merge/merge-pdfs` more robust by allowing more input and output types [#67](https://github.com/dotemacs/pdfboxing/pull/67)
 
 ## 0.1.15.1-SNAPSHOT
 
