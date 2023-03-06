@@ -8,7 +8,8 @@
 - Added the ability to run tests automatically using GitHub actions [#64](https://github.com/dotemacs/pdfboxing/pull/64)
 
 ### Changed
-- Upgraded `PDFBox` to `2.0.27`
+- Upgraded `PDFBox` to `2.0.27`[#68](https://github.com/dotemacs/pdfboxing/pull/68)
+- Upgraded `Clojure` to `1.11.1`[#68](https://github.com/dotemacs/pdfboxing/pull/68)
 - Using lists for :imports
 - Updated documentation of `split-pdf-at` in the README
 - Imports in `pdfboxing.common` comply with clj-kondo linting
