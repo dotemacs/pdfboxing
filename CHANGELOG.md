@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.15.3-SNAPSHOT
+
+### Added
+- Added the ability to create HTML documents from PDFs [#69](https://github.com/dotemacs/pdfboxing/pull/69)
+
 ## 0.1.15.2-SNAPSHOT
 
 ### Added
