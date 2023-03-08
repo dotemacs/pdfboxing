@@ -1,5 +1,5 @@
 (ns pdfboxing.tools
-  (:import [org.apache.pdfbox.tools ExtractText]))
+  (:import (org.apache.pdfbox.tools ExtractText)))
 
 
 (defn pdf-to-html
