@@ -1,11 +1,11 @@
-(ns pdfboxing.tools-test
-  (:require [clojure.test :refer :all]
-            [pdfboxing.tools :refer :all]))
+(ns pdfboxing.html-test
+  (:require [clojure.test :refer [deftest is]]
+            [pdfboxing.html :refer [pdf-to-html]]))
 
 (def line-separator (System/getProperty "line.separator"))
 
 (deftest pdf-to-html-tool
-  (let [html (pdf-to-html "test/pdfs/hello.pdf")]
+  (let [_html-doc (pdf-to-html "test/pdfs/hello.pdf")]
     (is (= (str "
 <!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
 \"http://www.w3.org/TR/html4/loose.dtd\">

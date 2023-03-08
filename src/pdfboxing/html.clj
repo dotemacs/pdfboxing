@@ -1,4 +1,4 @@
-(ns pdfboxing.tools
+(ns pdfboxing.html
   (:import (org.apache.pdfbox.tools ExtractText)))
 
 
