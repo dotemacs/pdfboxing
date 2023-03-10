@@ -5,8 +5,11 @@
             [pdfboxing.merge :refer [arg-check merge-pdfs]]))
 
 (deftest input-output-argument-check
+  #_:clj-kondo/ignore
   (is (thrown? IllegalArgumentException (arg-check)))
+  #_:clj-kondo/ignore
   (is (thrown? IllegalArgumentException (arg-check nil)))
+  #_:clj-kondo/ignore
   (is (thrown? IllegalArgumentException (arg-check "input")))
   (is (thrown? IllegalArgumentException (arg-check nil nil)))
   (is (thrown? IllegalArgumentException (arg-check "input" "output")))
@@ -23,8 +26,8 @@
 
 (deftest pdf-file-merge-paths
   (let [file "test/pdfs/foo.pdf"
-        merging-outcome (merge-pdfs :output file
-                                    :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"])
+        _merging-outcome (merge-pdfs :output file
+                                     :input ["test/pdfs/clojure-1.pdf" "test/pdfs/clojure-2.pdf"])
         merged-pdf-file (.exists (io/as-file file))]
     (is (true? merged-pdf-file))
     (is (true? (common/is-pdf? file)))))
@@ -34,24 +37,24 @@
     (with-open [output (io/output-stream output-path)
                 input-1 (io/input-stream "test/pdfs/clojure-1.pdf")
                 input-2 (io/input-stream "test/pdfs/clojure-2.pdf")]
-      (let [merging-outcome (merge-pdfs :output output
-                                        :input [input-1 input-2])
+      (let [_merging-outcome (merge-pdfs :output output
+                                         :input [input-1 input-2])
             merged-pdf-file (.exists (io/as-file output-path))]
         (is (true? merged-pdf-file))
         (is (true? (common/is-pdf? output-path)))))))
 
 (deftest pdf-file-merge-files
   (let [file "test/pdfs/foo.pdf"
-        merging-outcome (merge-pdfs :output file
-                                    :input [(io/as-file "test/pdfs/clojure-1.pdf")
-                                            (io/as-file "test/pdfs/clojure-2.pdf")])
+        _merging-outcome (merge-pdfs :output file
+                                     :input [(io/as-file "test/pdfs/clojure-1.pdf")
+                                             (io/as-file "test/pdfs/clojure-2.pdf")])
         merged-pdf-file (.exists (io/as-file file))]
     (is (true? merged-pdf-file))
     (is (true? (common/is-pdf? file)))))
 
 ;; clean up
 (defn clean-up [file]
-  (if (.exists (io/as-file file))
+  (when (.exists (io/as-file file))
     (io/delete-file file)))
 
 (deftest cleaner
