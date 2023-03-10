@@ -48,4 +48,4 @@ jobs:
           restore-keys: cljdeps-
 
       - name: Execute clojure code
-        run: lein test
+        run: clojure -M:test:runner
