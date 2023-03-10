@@ -1,9 +1,0 @@
-language: clojure
-lein: 2.9.1
-script: lein do clean, test
-jdk:
-  - openjdk8
-  - openjdk9
-  - openjdk10
-  - openjdk11
-  - oraclejdk11
