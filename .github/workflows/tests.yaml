@@ -32,7 +32,7 @@ jobs:
           java-version: '11'
 
       - name: Install clojure tools-deps
-        uses: DeLaGuardo/setup-clojure@master
+        uses: DeLaGuardo/setup-clojure@10.2
         with:
           tools-deps: 1.10.3.882
 
