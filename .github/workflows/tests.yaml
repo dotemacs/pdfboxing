@@ -18,6 +18,8 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
+        distribution: ['zulu', 'temurin']
+        java: ['8', '11', '16', '17']
 
     runs-on: ${{ matrix.operating-system }}
 
@@ -28,8 +30,8 @@ jobs:
       - name: Prepare java
         uses: actions/setup-java@v3.10.0
         with:
-          distribution: 'temurin'
-          java-version: '11'
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.java }}
 
       - name: Install clojure tools-deps
         uses: DeLaGuardo/setup-clojure@10.2
