@@ -5,6 +5,9 @@
 ### Changed
 - Updated the CI jobs, by adding more JVMs to test against & added a clj-kondo lint job[#70](https://github.com/dotemacs/pdfboxing/pull/70)
 
+### Removed
+- Removed TravisCI config[#71](https://github.com/dotemacs/pdfboxing/pull/71)
+
 ## 0.1.15.3-SNAPSHOT
 
 ### Added
