@@ -39,7 +39,7 @@
   (obtain-document [source]))
 
 (extend-protocol PDFDocument
-  (class (byte-array 0))
+  (Class/forName "[B") ;; byte-array
   (obtain-document [source]
     (PDDocument/load source))
 
