@@ -34,7 +34,7 @@ jobs:
       - name: Install clojure tools-deps
         uses: DeLaGuardo/setup-clojure@10.2
         with:
-          tools-deps: 1.10.3.882
+          tools-deps: 1.11.1.1252
 
       - name: Cache Maven packages
         uses: actions/cache@v2.1.6
