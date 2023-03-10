@@ -134,7 +134,6 @@ Supply a PDF document's name, a simple HTML is created in the root folder
 The following functions referenced above have direct compatibility
 with PDFBox's internal PDDocument type:
 
->>>>>>> f3d4a82 (added pdf-to-html tool function)
 - `text/extract`
 - `pdf/split-pdf`
 - `form/get-fields`
