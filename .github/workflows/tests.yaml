@@ -39,9 +39,13 @@ jobs:
       - name: Cache Maven packages
         uses: actions/cache@v2.1.6
         with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/project.clj') }}
-          restore-keys: ${{ runner.os }}-m2
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          # List all files containing dependencies:
+          key: cljdeps-${{ hashFiles('deps.edn') }}
+          restore-keys: cljdeps-
 
       - name: Execute clojure code
         run: lein test
