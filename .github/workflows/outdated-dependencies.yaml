@@ -1,30 +1,11 @@
-name: Dependency checker
+name: Outdated dependencies
 on:
+  push:
   schedule:
-    - cron: "17 0/2 * * *"
-  workflow_dispatch:
-
+    - cron: '17 0/2 * * *'
 jobs:
-  ci:
-    name: Scheduled dependency checker
+  antq:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-java@v3.10.0
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-      - name: Checkout the branch
-        uses: actions/checkout@v3.1.0
-        with:
-          ref: ${{ github.ref }}
-      - name: Install Clojure CLI
-        uses: DeLaGuardo/setup-clojure@10.2
-        with:
-          tools-deps: 1.11.1.1252
-      - name: check for outdated dependencies
-        run: |
-          echo 'Scheduled outdated dependency check:' >> outdated.md
-          echo '```clojure' >> outdated.md
-          clojure -M:outdated >> outdated.md
-          echo '```' >> outdated.md
-          if [ $(grep -c ':mvn/version' outdated.md) -gt 0 ]; then exit 1; fi
+      - uses: actions/checkout@v3
+      - uses: liquidz/antq-action@main
