@@ -1,5 +1,10 @@
 # Changelog
 
+## WIP
+
+### Changed
+- Updated the CI jobs, by adding more JVMs to test against & added a clj-kondo lint job[#70](https://github.com/dotemacs/pdfboxing/pull/70)
+
 ## 0.1.15.3-SNAPSHOT
 
 ### Added
