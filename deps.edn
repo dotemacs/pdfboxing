@@ -5,5 +5,5 @@
                   :extra-deps {org.clojure/test.check {:mvn/version "RELEASE"}}}
            :runner {:extra-deps {com.cognitect/test-runner
                                  {:git/url "https://github.com/cognitect-labs/test-runner"
-                                  :sha "76568540e7f40268ad2b646110f237a60295fa3c"}}
+                                  :sha "7284cda41fb9edc0f3bc6b6185cfb7138fc8a023"}}
                     :main-opts ["-m" "cognitect.test-runner" "-d" "test"]}}}
