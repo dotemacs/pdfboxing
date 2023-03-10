@@ -1,5 +1,5 @@
 (ns pdfboxing.info-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [pdfboxing.info :refer [about-doc metadata-value metadata-values page-number]]))
 
 (deftest document-info
