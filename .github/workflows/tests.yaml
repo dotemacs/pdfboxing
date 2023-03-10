@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.1.0
+        uses: actions/checkout@v3.3.0
 
       - name: Prepare java
         uses: actions/setup-java@v3.10.0
@@ -39,7 +39,7 @@ jobs:
           tools-deps: 1.11.1.1252
 
       - name: Cache Maven packages
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v3.3.0
         with:
           path: |
             ~/.m2/repository
