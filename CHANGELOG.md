@@ -5,6 +5,9 @@
 ### Changed
 - Updated the CI jobs, by adding more JVMs to test against & added a clj-kondo lint job[#70](https://github.com/dotemacs/pdfboxing/pull/70)
 
+### Added
+- Added GitHub action based on antq, for outdated dependencies & updated outdated dependencies[#72](https://github.com/dotemacs/pdfboxing/pull/72)
+
 ### Removed
 - Removed TravisCI config[#71](https://github.com/dotemacs/pdfboxing/pull/71)
 
