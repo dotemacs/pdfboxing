@@ -8,6 +8,7 @@
 
 ### Added
 - Added GitHub action based on antq, for outdated dependencies & updated outdated dependencies[#72](https://github.com/dotemacs/pdfboxing/pull/72)
+- Added the licence file[#74](https://github.com/dotemacs/pdfboxing/pull/74)
 
 ### Removed
 - Removed TravisCI config[#71](https://github.com/dotemacs/pdfboxing/pull/71)
