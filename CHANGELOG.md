@@ -5,6 +5,7 @@
 ### Changed
 - Updated the CI jobs, by adding more JVMs to test against & added a clj-kondo lint job[#70](https://github.com/dotemacs/pdfboxing/pull/70)
 - `pdfboxing.split/split-pdf` wouldn't close a document when splitting[#73](https://github.com/dotemacs/pdfboxing/pull/73)
+- Updated CI depdendency, GitHub action `actions/cache` to v3.3.1[#75](https://github.com/dotemacs/pdfboxing/pull/75)
 
 ### Added
 - Added GitHub action based on antq, for outdated dependencies & updated outdated dependencies[#72](https://github.com/dotemacs/pdfboxing/pull/72)
