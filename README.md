@@ -6,7 +6,7 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 * [!["Leiningen version"](https://img.shields.io/badge/dynamic/json?color=informational&label=Leiningen&prefix=%5Bpdfboxing%20%22&query=%24%5B0%5D.latest_version&suffix=%22%5D&url=https%3A%2F%2Fclojars.org%2Fapi%2Fgroups%2Fpdfboxing)](https://clojars.org/pdfboxing)
 * [!["Continuous Integration status"](https://github.com/dotemacs/pdfboxing/workflows/Tests/badge.svg)](https://github.com/dotemacs/pdfboxing/actions?query=workflow%3A%22Tests%22)
 * [![License](http://img.shields.io/badge/license-BSD-brightgreen.svg?style=flat-square)](LICENSE)
-* [![Dependencies Status](https://github.com/dotemacs/pdfboxing/actions/workflows/Outdated%20dependencies/badge.svg)](https://github.com/dotemacs/pdfboxing/actions?query=workflow%3A%22Outdated%20dependencies%22)
+* [![Dependencies Status](https://github.com/dotemacs/pdfboxing/actions/workflows/outdated-dependencies.yaml/badge.svg)](https://github.com/dotemacs/pdfboxing/actions?query=workflow%3A%22Outdated%20dependencies%22)
 * [![Downloads](https://versions.deps.co/dotemacs/pdfboxing/downloads.svg)](https://versions.deps.co/dotemacs/pdfboxing)
 
 ## Usage
