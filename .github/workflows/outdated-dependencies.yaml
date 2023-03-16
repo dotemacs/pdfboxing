@@ -6,6 +6,7 @@ on:
 jobs:
   antq:
     runs-on: ubuntu-latest
+    skips: github-actions
     steps:
       - uses: actions/checkout@v3
       - uses: liquidz/antq-action@main
