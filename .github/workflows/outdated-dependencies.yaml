@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: liquidz/antq-action@main
         with:
-          skips: 'github-actions'
+          skips: 'github-action'
