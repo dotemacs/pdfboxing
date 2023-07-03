@@ -7,6 +7,7 @@
 - `pdfboxing.split/split-pdf` wouldn't close a document when splitting[#73](https://github.com/dotemacs/pdfboxing/pull/73)
 - Updated CI depdendency, GitHub action `actions/cache` to v3.3.1[#75](https://github.com/dotemacs/pdfboxing/pull/75)
 - Updated pdfbox & pdfbox-tools to the latest stable release[#76](https://github.com/dotemacs/pdfboxing/pull/76)
+- Updated pdfbox & pdfbox-tools to the latest stable release[#77](https://github.com/dotemacs/pdfboxing/pull/77)
 
 ### Added
 - Added GitHub action based on antq, for outdated dependencies & updated outdated dependencies[#72](https://github.com/dotemacs/pdfboxing/pull/72)
