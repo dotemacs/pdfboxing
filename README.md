@@ -18,6 +18,36 @@ Clojure PDF manipulation library & wrapper for [PDFBox](http://pdfbox.apache.org
 (text/extract "test/pdfs/hello.pdf")
 ```
 
+### Extract text from specific regions
+
+```clojure
+(require '[pdfboxing.text :as text])
+(let [areas [{:x           0
+              :y           100
+              :w           350
+              :h           50
+              :page-number 0}
+             {:x           0
+              :y           580
+              :w           540
+              :h           100
+              :page-number 0}]]
+  (text/extract-by-areas "test/pdfs/clojure-1.pdf" areas))
+```
+
+results in
+```clojure
+=> ("Clojure is a dynamic programming language\n" "Rationale\nFeatures\nDownload\nGetting Started\nDocumentation\nClojureScript\nClojureCLR\n")
+```
+
+Then you can easily turn the result into a map using zipmap to get the following:
+
+```clojure
+;; Result of (zipmap [:description :links] text-extract)
+
+{:description "Clojure is a dynamic programming language\n", :links "Rationale\nFeatures\nDownload\nGetting Started\nDocumentation\nClojureScript\nClojureCLR\n"}
+```
+
 ### Merge multiple PDFs
 
 ```clojure
