@@ -1,6 +1,7 @@
 {:deps {org.clojure/clojure {:mvn/version "1.11.1"},
-        org.apache.pdfbox/pdfbox {:mvn/version "2.0.29"}
-        org.apache.pdfbox/pdfbox-tools {:mvn/version "2.0.29"}}
+        org.apache.pdfbox/pdfbox {:mvn/version "3.0.1"}
+        org.apache.pdfbox/pdfbox-io {:mvn/version "3.0.1"}
+        org.apache.pdfbox/pdfbox-tools {:mvn/version "3.0.1"}}
  :aliases {:test {:extra-paths ["test"]
                   :extra-deps {org.clojure/test.check {:mvn/version "RELEASE"}}}
            :runner {:extra-deps {com.cognitect/test-runner
