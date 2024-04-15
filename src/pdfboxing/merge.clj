@@ -1,15 +1,15 @@
 (ns pdfboxing.merge
   (:require [pdfboxing.common :as common])
-  (:import (java.io InputStream OutputStream)
+  (:import (java.io File InputStream OutputStream)
+           (org.apache.pdfbox.io IOUtils RandomAccessRead RandomAccessReadBuffer)
            (org.apache.pdfbox.multipdf PDFMergerUtility)
            (org.apache.pdfbox.pdmodel PDDocument
-                                      PDPage
-                                      PDPageContentStream)
+                                      PDPage PDPageContentStream)
            (org.apache.pdfbox.pdmodel.common PDRectangle)
            (org.apache.pdfbox.pdmodel.graphics.image PDImageXObject)))
 
 (defn throw-exception
-  [message]
+  [^String message]
   (throw (IllegalArgumentException. message)))
 
 (defn check-if-present
@@ -43,18 +43,26 @@
   {:pre [(arg-check output input)]}
   (let [merger (PDFMergerUtility.)]
     (doseq [source input]
-      (.addSource merger source))
+      (condp instance? source
+        File (.addSource merger ^File source)
+        String (.addSource merger ^String source)
+        InputStream (.addSource merger ^RandomAccessRead
+                                (RandomAccessReadBuffer. ^InputStream source))))
     (cond
       (instance? OutputStream output)
       (.setDestinationStream merger output)
 
       :else
       (.setDestinationFileName merger output))
-    (.mergeDocuments merger)))
+    (.mergeDocuments merger (IOUtils/createMemoryOnlyStreamCache))
+    (condp instance? output
+      File (.close output)
+      OutputStream (.close output)
+      nil)))
 
 (defn- add-image-to-page
   "Adds image as a page to the document object"
-  [doc ^org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject image]
+  [^PDDocument doc ^PDImageXObject image]
   (let [page-size PDRectangle/A4
         original-width (.getWidth image)
         original-height (.getHeight image)

@@ -4,5 +4,6 @@
   :license {:name "BSD"
             :url "https://opensource.org/license/bsd-3-clause/"}
   :dependencies [[org.clojure/clojure "1.11.1"]
-                 [org.apache.pdfbox/pdfbox "2.0.29"]
-                 [org.apache.pdfbox/pdfbox-tools "2.0.29"]])
+                 [org.apache.pdfbox/pdfbox "3.0.1"]
+                 [org.apache.pdfbox/pdfbox-io "3.0.1"]
+                 [org.apache.pdfbox/pdfbox-tools "3.0.1"]])

@@ -1,38 +1,26 @@
 (ns pdfboxing.common
   (:require [clojure.java.io :as io])
   (:import (java.io File)
-           (org.apache.pdfbox.pdmodel PDDocument)
-           (org.apache.pdfbox.io RandomAccessFile)
-           (org.apache.pdfbox.pdfparser PDFParser)))
+           (org.apache.pdfbox Loader)
+           (org.apache.pdfbox.pdmodel PDDocument)))
 
-(defn try-get-as-pdf
-  "Try and get the pdf-file-or-path as a PDF.
-  Returns nil if pdf-file-or-path could not be loaded as a PDF."
-  [pdf-file-or-path]
-  (let [^File pdf-file (io/as-file pdf-file-or-path)
-        random-access-file (RandomAccessFile. pdf-file "r")
-        parser (PDFParser. random-access-file)]
-    (try
-      (.parse parser)
-      (.getPDDocument parser)
-      (catch Exception _))))
+
+(defn load-pdf-from-media [pdf-file-or-path]
+  (try
+    (-> pdf-file-or-path
+        ^File (io/as-file)
+        (Loader/loadPDF))
+    (catch Exception _)))
 
 (defn is-pdf?
   "Confirm that the PDF supplied is really a PDF"
   [pdf-file-or-path]
-  (if-let [pdf (try-get-as-pdf pdf-file-or-path)]
+  (if-let [pdf (load-pdf-from-media pdf-file-or-path)]
     (try
       (not (nil? pdf))
       (finally
         (.close pdf)))
     false))
-
-(defn load-pdf
-  "Load a given PDF only after checking if it really is a PDF"
-  [pdf-file-or-path]
-  (if-let [pdf (try-get-as-pdf pdf-file-or-path)]
-    pdf
-    (throw (IllegalArgumentException. (format "%s is not a PDF file" pdf-file-or-path)))))
 
 (defprotocol PDFDocument
   "return an object from which text can be extracted"
@@ -41,16 +29,17 @@
 (extend-protocol PDFDocument
   #_{:clj-kondo/ignore [:function-name]}
   (Class/forName "[B") ;; byte-array
+  #_:clj-kondo/ignore
   (obtain-document [source]
-    (PDDocument/load source))
+    (Loader/loadPDF source))
 
   String
   (obtain-document [source]
-    (load-pdf source))
+    (load-pdf-from-media source))
 
   File
   (obtain-document [source]
-    (load-pdf source))
+    (load-pdf-from-media source))
 
   PDDocument
   (obtain-document [source]
