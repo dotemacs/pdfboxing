@@ -1,13 +1,12 @@
 (ns pdfboxing.merge
   (:require [pdfboxing.common :as common])
   (:import (java.io File InputStream OutputStream)
-           (org.apache.pdfbox.io IOUtils MemoryUsageSetting RandomAccessRead RandomAccessReadBuffer)
+           (org.apache.pdfbox.io IOUtils RandomAccessRead RandomAccessReadBuffer)
            (org.apache.pdfbox.multipdf PDFMergerUtility)
            (org.apache.pdfbox.pdmodel PDDocument
                                       PDPage PDPageContentStream)
            (org.apache.pdfbox.pdmodel.common PDRectangle)
-           (org.apache.pdfbox.pdmodel.graphics.image PDImageXObject)
-           (org.junit.platform.engine.support.descriptor FileSource)))
+           (org.apache.pdfbox.pdmodel.graphics.image PDImageXObject)))
 
 (defn throw-exception
   [^String message]
