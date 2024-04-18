@@ -1,13 +1,13 @@
 # Changelog
 
-## WIP
+## 0.1.15.4-SNAPSHOT
 
 ### Changed
 - Updated the CI jobs, by adding more JVMs to test against & added a clj-kondo lint job[#70](https://github.com/dotemacs/pdfboxing/pull/70)
 - `pdfboxing.split/split-pdf` wouldn't close a document when splitting[#73](https://github.com/dotemacs/pdfboxing/pull/73)
 - Updated CI depdendency, GitHub action `actions/cache` to v3.3.1[#75](https://github.com/dotemacs/pdfboxing/pull/75)
-- Updated pdfbox & pdfbox-tools to the latest stable release[#76](https://github.com/dotemacs/pdfboxing/pull/76)
-- Updated pdfbox & pdfbox-tools to the latest stable release[#77](https://github.com/dotemacs/pdfboxing/pull/77)
+- Updated PDFBox to 3.0.1 [#79](https://github.com/dotemacs/pdfboxing/pull/79)
+- Updated `actions/checkout` to v4 [ecd8fdd0a113920677d5dd4689ce4de36f933fa0](https://github.com/dotemacs/pdfboxing/commit/ecd8fdd0a113920677d5dd4689ce4de36f933fa0)
 
 ### Added
 - Added GitHub action based on antq, for outdated dependencies & updated outdated dependencies[#72](https://github.com/dotemacs/pdfboxing/pull/72)
