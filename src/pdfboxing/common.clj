@@ -27,9 +27,8 @@
   (obtain-document [source]))
 
 (extend-protocol PDFDocument
-  #_{:clj-kondo/ignore [:function-name]}
-  (Class/forName "[B") ;; byte-array
   #_:clj-kondo/ignore
+  (Class/forName "[B") ;; byte-array
   (obtain-document [source]
     (Loader/loadPDF source))
 
