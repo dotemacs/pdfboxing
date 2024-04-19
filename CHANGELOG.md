@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.15.5-SNAPSHOT
+
+### Changed
+- Updated PDFBox to 3.0.2, Clojure to 1.11.2 & GitHub actions to the
+  latest stable version [#80](https://github.com/dotemacs/pdfboxing/pull/80)
+
 ## 0.1.15.4-SNAPSHOT
 
 ### Changed
