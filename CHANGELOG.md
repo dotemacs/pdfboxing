@@ -1,5 +1,10 @@
 # Changelog
 
+## WIP
+
+### Changed
+- Updated Clojure to 1.11.3 [#81](https://github.com/dotemacs/pdfboxing/pull/81)
+
 ## 0.1.15.5-SNAPSHOT
 
 ### Changed
