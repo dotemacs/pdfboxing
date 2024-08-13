@@ -3,7 +3,7 @@
   :url "https://github.com/dotemacs/pdfboxing"
   :license {:name "BSD"
             :url "https://opensource.org/license/bsd-3-clause/"}
-                 [org.apache.pdfbox/pdfbox "3.0.2"]
-                 [org.apache.pdfbox/pdfbox-io "3.0.2"]
-                 [org.apache.pdfbox/pdfbox-tools "3.0.2"]])
   :dependencies [[org.clojure/clojure "1.11.4"]
+                 [org.apache.pdfbox/pdfbox "3.0.3"]
+                 [org.apache.pdfbox/pdfbox-io "3.0.3"]
+                 [org.apache.pdfbox/pdfbox-tools "3.0.3"]])
