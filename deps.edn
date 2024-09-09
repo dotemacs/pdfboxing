@@ -1,4 +1,4 @@
-{:deps {org.clojure/clojure {:mvn/version "1.11.4"},
+{:deps {org.clojure/clojure {:mvn/version "1.12.0"}
         org.apache.pdfbox/pdfbox {:mvn/version "3.0.3"}
         org.apache.pdfbox/pdfbox-io {:mvn/version "3.0.3"}
         org.apache.pdfbox/pdfbox-tools {:mvn/version "3.0.3"}}

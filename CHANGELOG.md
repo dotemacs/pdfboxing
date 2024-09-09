@@ -3,6 +3,8 @@
 ## WIP
 
 ### Changed
+- Updated Clojure to 1.12.0 & GitHub actions to the latest stable
+  version [#83](https://github.com/dotemacs/pdfboxing/pull/83)
 - Updated PDFBox to 3.0.3, Clojure to 1.11.4 & GitHub actions to the
   latest stable version [#82](https://github.com/dotemacs/pdfboxing/pull/82)
 - Updated Clojure to 1.11.3 [#81](https://github.com/dotemacs/pdfboxing/pull/81)
