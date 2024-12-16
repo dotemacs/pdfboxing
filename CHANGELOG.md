@@ -44,6 +44,7 @@
 - Added the ability to merge multiple images into a single PDF[#45](https://github.com/dotemacs/pdfboxing/pull/45)
 - Added the ability to load PDFs from byte arrays [#58](https://github.com/dotemacs/pdfboxing/pull/58)
 - Added the ability to run tests automatically using GitHub actions [#64](https://github.com/dotemacs/pdfboxing/pull/64)
+- Added the ability to partially parse PDF content based on a vector of regions
 
 ### Changed
 - Upgraded `PDFBox` to `2.0.27` & `Clojure` to `1.11.1` [#68](https://github.com/dotemacs/pdfboxing/pull/68)
