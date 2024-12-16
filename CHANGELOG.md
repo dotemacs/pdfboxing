@@ -9,6 +9,7 @@
   latest stable version [#82](https://github.com/dotemacs/pdfboxing/pull/82)
 - Updated Clojure to 1.11.3 [#81](https://github.com/dotemacs/pdfboxing/pull/81)
 - Update cognitect/test-runner to the latest release
+- Update cognitect/test-runner to the latest release, again
 
 ## 0.1.15.5-SNAPSHOT
 
